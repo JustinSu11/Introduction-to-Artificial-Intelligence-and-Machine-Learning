@@ -1,0 +1,21 @@
+# --- Agent: LangChain + Gemini (Module 1 notebook) ---
+langchain
+langchain-community
+langchain-google-genai
+langgraph
+google-genai
+wikipedia
+
+# --- Agent: LlamaIndex + Gemini (Assignment 1.2, Q2a) ---
+llama-index
+llama-index-llms-google-genai
+
+# --- Flow chart (Assignment 1.2, Q1b) ---
+# Also needs the Graphviz program installed on Windows (winget install Graphviz.Graphviz, then restart the terminal)
+graphviz
+
+# --- Notebooks, export to HTML/PDF, API key handling ---
+ipykernel
+notebook
+nbconvert
+python-dotenv

@@ -1,3 +1,7 @@
 .semgrep/
 .DS_Store
 Thumbs.db
+.venv/
+.env
+__pycache__/
+.ipynb_checkpoints/
