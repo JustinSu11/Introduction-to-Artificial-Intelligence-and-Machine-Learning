@@ -1,0 +1,89 @@
+Welcome back to module two. We talked in the last lecture about problem solving as search and how to frame problems in the lens of searching through directed graphs. Today, we will be talking about the first of our two main classes of search strategies known as uninformed search. To refresh your memory, we will be looking at two primary flavors of search strategies. The first, which we will discuss in this lecture is uninformed, where we know nothing about the solution, its location, or how to get there.
+
+In the next video, we will talk about informed search strategies where we actually know something about the solution. But for today, we will focus on the following four algorithms, breadth-first search, depth- first search, iterative deepening, and lowest-cost-first search. Throughout both this lecture and the next, we are going to be using a canonical search example. Now, we've seen this directed graph before, and the purpose of this graph is that we will start off at node A, and then we will end at node G. We will then see how the frontier, you'll remember that from last lecture, how the frontier expands as we work through these different examples.
+
+Because as you'll recall, the difference between these algorithms is how in fact they expand that frontier. Let's get started. Let's go ahead and talk about breadth-first search. In breadth-first search, what you do is you search the nodes level by level. If you arrange a graph from top to bottom where your starting node is considered the root node, you can think of each of these layers as a level.
+
+And what breath-first search will do is it will expand until it is completed one level then move to the next. So it will start at the parent node. It will then move to node two and node three. Well, that's the first level that it's expanded. Then it will expand the next level, four, five, six, seven.
+
+Then the following level, and then so on and so forth, until breath-first search finds the solution it's looking for. Now let's translate this back to our canonical graph example and see how breath-first search expands the frontier of our canonical graph. So we start out with a frontier of just A. We're beginning. Next, our frontier considers all of the different paths that are one step or one edge away from A.
+
+That's A,B, that's A,C, and that's A,D. Next, we consider all of the paths that are two steps away, right? So we'll go A,B,E, A,B,F, A,C,J, and A,D,H. Now we are going to expand two paths of four steps, right? We still have not found the solution.
+
+The first thing you'll notice is that we're actually gonna get rid of A,B,E. We're gonna pull that off because E is a terminal node and we can't go anywhere. So, well, from A,B,F, we could do A,B,F,D. From A,C,J, we could do A,C,J,G. And look, we found the solution.
+
+And then lastly, we could do A,D,H,G. So you see how at each level, we're simply expanding one more step, and we found our solution. Now, let's go back and assess breadth-first search using the four-pronged criteria we laid out in the last lecture. What you are going to see in this notation is we're going to introduce two new variables, branching factor and tree depth that help us talk through Big O notation. So branching factor you can think of as simply the number of children node on average that any given parent node has, right?
+
+So for the average node, how many lines are coming out of it? The bigger the branching factor, the more children nodes you would expect to have, and thus, the larger your graph would get as you go layer by layer. D is the tree depth. So the deeper we go, the larger D gets. Now, let's go back.
+
+Is breath-first search complete? The answer is yes. It is in fact guaranteed to find a solution, and that's because it is going to search line by line here until it finds one. The downside of this is that both the search time and the memory usage are exponential. We are leaving no stone unturned with breath-first search.
+
+And particularly when you think about how big this frontier gets and just holding it in memory, it actually becomes quite a challenge. So search time and memory usage, they're actually exponential, not great. Optimality, do we actually find the best solution possible? Well, the answer is kind of. If we assume that the cost of moving from one node to the next is the same, then, yes, this is in fact an optimal algorithm.
+
+However, we're not actually taking into consideration you'll notice any cost of moving from one node to the next. So what we're actually looking at is the number of fewest arcs or steps that we have to take. But if there are different costs, say a cost of five to go from one to three and a cost of eight to go from one to two, then the fewest arcs does not necessarily mean that we are going to find the solution with the lowest cost, just the number of fewest steps. Now, let's talk about depth-first search. The idea behind depth-first search is that it is going to search each possible path to its very end, come back and then try to go deep again.
+
+So in depth-first search, we're gonna start at our parent node. We're going to have two options, but we're gonna set this option aside for a second. We're gonna say, okay, let's see how deep we can go with just one of these paths. So we're gonna go here, we're gonna go here, we're gonna go here, and we're gonna go here. And what you're gonna notice is that we are just following one path all the way down to the bottom.
+
+We're not taking any sort of sidetrack turns, but we're saying we're gonna go until there's nothing left. At that point, we're gonna back up and then try to go deep again. Back up and then try to go deep again. And you'll actually see us slowly go back up to the parent node as we search. Now, what exactly does this mean for our canonical example?
+
+Let's take a look. Well, once again, we start off with our node A on the frontier. All the possibilities for A are A,B, A,C, and A,D. Now, what we could see is let's go to A,B. Well, what are the possibilities?
+
+From A,B let's see how deep we could go. Well, we could go to A,B,E, or we could go to A,B,F. But A,B,E doesn't actually lead anywhere. So we'll take that one off, and A,B,F is our only option. Now again, we are going to follow this path until it doesn't go any further.
+
+So we're gonna go from F to D, and then we're gonna go from D to H, and then we're gonna go from H to G. And we have actually found our solution. Now, it doesn't always work out that easily, but what you'll note is that in terms of the size of the frontier, it's actually a lot smaller, right? We're simply expanding one out. Now, yes, we got lucky in this example, but that is in fact the power of depth-first search.
+
+So let's go through the assessment. Is depth-first search guaranteed to be complete? The answer is no. And the reason is because in certain graphs, you could end up in paths that are infinitely long, right? Just picture an infinite rabbit hole that is ultimately followed through the very end.
+
+Now, not every graph is gonna have an infinite path length, but some do, so it's not a guarantee. Just need one counter example. What about the search time? Well, the search time, once again, is exponential. But here's where depth-first search gets interesting.
+
+It's all about the memory usage. Again, think about the size of that frontier. It's a lot smaller, right? All you need to track at any given time is, what's the node in front of me? What's the node in front of me?
+
+So the memory usage is in fact linear. This is a much more efficient algorithm. Now, is depth-first search optimal? The answer is no. It's just gonna go, go, go, go, go.
+
+Perhaps it'll find a solution here at node 11, but what if there was a solution right over here at a much shallower depth? There are no guarantees. And so depth-first search is not guaranteed to be optimal. So breadth-first search and depth-first search. Now let's talk about iterative deepening.
+
+This one's a little bit subtle, but what we do is we actually perform depth-first search to a specified depth, and then start over with the next level. So what do I mean by that? Well, think of each of these rows as unique depth. So here we're at depth zero, depth one, depth two, depth three, so on and so forth. Well, what we're gonna do is we're gonna perform depth-first search to each of these depths.
+
+So DFS here, DFS here. Now we're gonna do depth-first search and recalculate everything, but go to the next level. So we're gonna go here, we're gonna go here, we're gonna go here, here, and here. Now, what you'll notice is that this graph is actually identical to breadth-first search. But the subtle difference is in how we're doing the calculations, right?
+
+As we get deeper and deeper and deeper, it's gonna be quicker for us to go and backtrack, go and backtrack, as opposed to having to keep all of the nodes in memory as we continue to expand. But for all intents and purposes, this is very similar to breath-first search. And in fact, if you look at our canonical example, how iterative deepening works. Well start with A, we're gonna do depth-first search to a depth of one, okay? A,B, A,C, and A,D.
+
+Now we're gonna do it to a depth of two. We're going to do A,B,E, A,B,F, and then we're also gonna do A,C,J and A,D,H. Now, A,B,E, that's a dead end so we're gonna trim that off. But now let's go one more depth down. So A,B,F,D, A,C,J,G, and then A,D,H,G.
+
+So we found our solution. Now let's give our assessment of iterative deepening. Well, we start out thinking of it exactly as we did with breath-first search. Is it complete? Yes, because at the end of the day, we're searching level by level, we're guaranteed to find a solution.
+
+Now search time itself is exponential. But here's the interesting trick. The interesting trick is because we're using depth-first search to expand, we actually get the benefit of depth-first search's memory usage, right? 'Cause your frontier is much smaller, there's less you have to keep in your mind as you expand to the next node and expand to the next node. Now that's true even though once you stop at each level, the frontier is the same, how you get there is much more efficient.
+
+So this is actually a very clever trick. It takes a little bit of time to think about, but trust me, it's pretty neat when it clicks. Once again, when we talk about optimality, it's the same rule as with breath-first search. Where we say that, well, we're guaranteed to find the solution with the fewest number of arcs or the fewest number of steps. But again, that does not mean that we are looking at the lowest cost possible.
+
+So if all we care about is fewest number of arcs, or if the graph is shall we say unweighted where all the values are the same, then sure it's optimal, otherwise it's not. Now, let's talk about lowest-cost-first search. All right, we have considered algorithms that don't take into account the cost from one node to another. But now all of a sudden we're going to talk about that with lowest-cost-first search. And what LCFS does is it prioritizes the search path with the lowest current cost, that means the lowest running cost.
+
+So what happens here? Let's walk through an example. We start at node A. Well, you've got three different directions you can go, and A to B is the cheapest. All right, that's one.
+
+Now, that was a dead end, so we got to back up. What is the next lowest current cost? That's going to be C, because two is lower than three. The next node we're going to expand has a total cost of three. Now, what do we do?
+
+Well, now we see that two plus two is four, which is better than two plus four equals six, or in this case, three plus two equals five, or three plus five equals eight. So we're gonna visit in the order of total path costs. So four costs means this one's next. Five costs means this is next. Six costs means this is next.
+
+And lastly, eight cost means H is next. Now, let's talk about how LCFS can be applied to our canonical example. You'll notice things are a bit more complicated now. We've added a few more costs that we have to consider. So what are we gonna do?
+
+We're gonna start at A, and let's think about the frontier. Well, A to B, that has a cost of two. A to C, that has a cost of three. And A to D has a cost of four. All right, if you look at this, A,B is the next one that we should expand 'cause it has the lowest costs out of all of these.
+
+All right, well, let's expand. Where do you do for A,B? Well, you've got A,B,E, which is a total cost of four. And then you have A,B,F, which is a total cost of five. Now, here's where things get interesting.
+
+Our next step is not to expand to D because let's think about where we are. So far we've expanded out A,B,E and we've expanded out A,B,F, but we still have A,C and A,D to expand. And both of these have lower costs than A, B, F, D, which has a total cost of seven. So we're gonna go this one next. We're then going to expand to A,C,J, which is a total cost of 10.
+
+And so on and so forth. Next, we would expand A,D and continue on. Now, there are so many nodes, I didn't have space to put them on here, but hopefully you can see how LCFS continues to expand that frontier by saying, all right, I'm gonna prioritize expanding the next node with the lowest cost. Now, let's assess LCFS. Is it complete?
+
+The answer is yes, it is guaranteed to find a solution. Both the search time and memory usage are again exponential. We're not guaranteed to get much of a gain with LCFS, right? Because once again, we're in the leave no stone unturned methodology. We're not iterating through things quickly.
+
+But optimality, here, we can say yes. When we have weights between the nodes that we need to consider, by definition, LCFS is going to expand and pursue the path that has the lowest total cost. Now, let's summarize when you might want to use these different search strategies. Well, breadth-first search is typically best for small problems where you only need to find the fewest number of steps, right? Because for optimality, we look at the number of arcs or steps not the total cost.
+
+Breath-first search, it will go through, it's brute force, but eventually you're gonna run out of memory. So you need to focus BFS on small problems. So for depth-first search, this is when you can start to expand out to larger problems. But it's also in instances where you say have limited memory in your AI agent, or where there's going to be potentially a lot of different solutions and you need to find one. Again, you're not guaranteed to find the optimal solution, but this is in fact a point where DFS really does come and shine.
+
+All right, so iterative deepening. Once again, it has the advantage of memory being smaller. So in instances where you only have a bit of memory, you can use it. Also like BFS, if you're looking for the fewest steps possible, then iterative deepening is your choice. Now, when do you use lowest-cost-first search?
+
+Well, it's when you need the lowest total cost of the path that you're taking. That's its big advantage. Now let's end today's presentation by talking about specific applications where you might see these. Hopefully this will serve as some inspiration for your final project. Breadth-first search is often used for social network analysis and web crawling, one step at a time.
+
+Depth- first search is great for file system traversal and code analysis. Iterative deepening you will find this anytime that you are trying to do what's known as a game tree search. So if you're trying to play chess or checkers, that's what we mean by game tree search, or even robot navigation. LCFS where you prioritize the lowest total value is often what is used for GPS navigation and delivery planning. So with that, that concludes our presentation on uninformed search.
+
+And next, we will move on to talk about informed search.

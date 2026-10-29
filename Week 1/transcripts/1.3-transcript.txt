@@ -1,0 +1,569 @@
+Welcome to module one of AAI501, AI agents & their environments.
+
+In the first lecture, we introduced the concepts of agents and how they played a role in the broader field of artificial intelligence.
+
+And today we're going to unpack this topic in a little bit more depth.
+
+Let's begin by reviewing what we know about agents and rationality.
+
+Well, we defined an agent as anything that can perceive its environment through sensors and ultimately act upon that environment through effectors or actuators.
+
+So here you can see we have an environment where percepts through sensors come to the agent and then the agent does something to that environment using actuators via actions.
+
+We also made the claim that agents combine perception, reasoning and action.
+
+And at the end of the day, we focus on rational agents, agents that choose the action that maximizes their expected outcome.
+
+Again, expected outcome given information to date.
+
+Let's dive a little deeper however on how agents actually make decisions.
+
+Here you can see we have our environment.
+
+We have our agent as both a figurative and literal black box.
+
+And let's understand what factors might contribute to an agent's decision making.
+
+For our purposes, we are going to consider five key factors to what an agent ultimately decides to do.
+
+The first is abilities.
+
+What is it that the agent is actually capable of doing?
+
+It might want to swim under the ocean, but unless it's equipped with some form of scuba gear, it's not gonna be able to.
+
+So the abilities right off the bat, restrict and limit what your agent can do and hence the decisions it might make.
+
+We next need to consider the agent's goals or preferences.
+
+What does the agent want to do?
+
+Not every agent is created equally.
+
+You might have an agent that prioritizes rapid mail delivery service, and another one that prioritizes accurate mail delivery service.
+
+So those two agents might make different decisions because they have slightly different albeit related goals.
+
+We also need to consider prior knowledge.
+
+What does the agent know about the broader world?
+
+Using our example of a mail delivery robot, it might keep in mind that it takes a certain amount of time based off of experience to open and close mailboxes or that dirt roads tend to have less traction than paved roads, and hence it might need to plan a bit more time for any rural delivery routes.
+
+We also need to consider stimuli.
+
+So think of this as what things are happening right now.
+
+What is being picked up by the sensors and that the agent can use to understand the world as it exists?
+
+And lastly, we have past experiences.
+
+So past experiences overlap with prior knowledge.
+
+However, past experience paint a bit more of a rich picture, what different factors went into a specific outcome that I observed or set of outcomes?
+
+You can think of prior knowledge as the distillation of important past experiences.
+
+So while they're related, they're actually slightly different.
+
+Let's dive into these topics a little bit more deeply using an example from the textbook, the lab delivery robot.
+
+So you can see our little robot right here in the hallways of a given lab.
+
+And this robot has the task of delivering various objects you can imagine, coffee, mail, lab equipment and supplies.
+
+And these deliveries could be anywhere inside the lab building.
+
+We've got main rooms on the outside, labs in the center of the building, even a main office.
+
+So for this lab delivery robot, let's run through those five specific factors and how we might frame them for this robot.
+
+Recall, we have abilities.
+
+What am I capable of doing?
+
+Goals, what do I want to do?
+
+Prior knowledge, what do I know about the world?
+
+Stimuli, what is happening right now?
+
+And then past experiences, what have I experienced before?
+
+If we break each of these down for our lab delivery robot, we might say things like, well, some important abilities we might give this agent is moving forward and backward.
+
+Pick up and set down objects.
+
+Or detecting and more importantly, avoiding obstacles that might be in the way.
+
+We also might have a wide range of goals the agent needs to consider.
+
+It needs to deliver coffee to every scientist by 9:00 AM.
+
+There is occasionally biohazard contamination that it needs to avoid, perhaps even making sure that it doesn't fall down the stairs and break.
+
+Prior knowledge, a map of a lab is a great example of prior knowledge.
+
+So again, if it doesn't want to fall down the stairs, it might be good for this robot to know where in the lab the stairs are.
+
+Prior knowledge can also be very basic.
+
+So think of even the physics of movement.
+
+If we have hardware as part of this robot, that hardware will need to understand the basic laws of gravity and momentum, right?
+
+Everything that goes into assembling and creating a physical embodiment of an AI agent.
+
+Next we have stimuli.
+
+What are some of the things that the sensors could pick up?
+
+Think of slippery floors, right?
+
+If a robot tries to make deliveries across a slippery floor, it's likely going to need to be a bit more careful.
+
+Additionally, there are going to be scientists walking around the lab and the lab delivery robot is going to need to know where are the scientists immediately in its vicinity so that they don't collide.
+
+And lastly, we have past experiences.
+
+This robot may need to know what is the extent of my battery range.
+
+There might be a stated battery range when the robot was initially delivered, but depending on the lab's altitude, humidity, lots of other factors.
+
+That range could in fact be limited.
+
+It also needs to understand its carrying capacity.
+
+If the robot has been tasked with say, delivering coffee, how many cups of coffee can it carry without spilling?
+
+Both from a weight standpoint as well as a stability or safety standpoint.
+
+So here we have taken our lab delivery robot and broken down the agent into the five key factors for understanding how our agent needs to make decisions.
+
+Okay, that's great, but how exactly does the agent take these factors and decide what to do?
+
+Well, let's actually unpack that black box a little bit more and understand how these five factors might be combined within the agent.
+
+To make a (indistinct).
+
+The first thing I'd like to call your attention to, is we have broken down that agent black box into a little more detail.
+
+More specifically, we have separated the agent into a body and a controller.
+
+Let's start with the body.
+
+The body is accountable for converting stimuli into percepts and then ultimately taking commands from the controller and turning those into actions.
+
+So you can think of the controller very similarly to the agent's brain, which relates directly to the agent also having a body.
+
+Now, we said before, the agents may be embodied, that is have a physical body, or they might not.
+
+But even if your agent is digital, it still has a quote unquote body.
+
+Think of an API endpoint, right?
+
+Where you can receive stimuli, and then ultimately the ability to send out API requests if you're a web crawler to do something.
+
+So that's the body.
+
+The controller, you can think of, again, as the agent's brain, it takes in the percepts, all the information and factors we just talked about, and ultimately decides to tell what the body to do.
+
+You can think of the controller as being where your machine learning algorithms live.
+
+Let's break apart that concept of a controller a little bit more.
+
+To do this, there are two important terms we need to understand.
+
+Belief states and controllers.
+
+We're gonna talk about controllers in a little bit more detail.
+
+So think of the belief state as all the information the agent recalls from previous time.
+
+You can think of examples of what the belief state might include as specific facts, perhaps former positions, or locations it's been in.
+
+Progress towards its goal, et cetera.
+
+The controller in turn is responsible for maintaining belief states and deciding what to do.
+
+So as an analogy, imagine the controller being your brain and your brain is responsible for maintaining the belief states or memory of what has happened previously.
+
+Now, let's also walk through figure 2.4 in your textbook because I think this does a great job of understanding and stating how these concepts work together.
+
+Alright, so let's talk about what we have going on the figure A.
+
+We have memories coming in to our agent and percepts, things happening in the world.
+
+Now, what we see is that the solid line you can think of as the command function, what is the controller deciding to do?
+
+It makes its decision based off of memory as well as the information, the percepts coming in, and that gives it the commands.
+
+At the same time, the controller is also accountable for taking the percepts, the memories, and ultimately the decisions made by the controller and updating its memory.
+
+So the controller is accountable for making sure the right command comes out and that the agent remembers the right thing.
+
+If we move to figure B, let's think about how the command function operates across time.
+
+So let's combine body and environment.
+
+And we have four time steps, T1, T2, T3, T4.
+
+Again, what you can see is that the controller takes in information from the past, takes in information from the body and the environment, and does something.
+
+That information is passed to the next step and so on and so forth.
+
+So the controller needs to have an effective understanding of time in order to maintain a belief state and to make proper decisions.
+
+I wanna take a second however, and call out something very important to keep in mind.
+
+Your machine learning algorithms are not themselves AI agents.
+
+So let's think of a linear regression plot, right?
+
+Or a function that perhaps plots blood pressure and other health factors against certain risk scores.
+
+Now this is an important bit of information for the medical community, right?
+
+You might use a chart like this to help determine a course of action or treatment for a patient, but in practice it's the people who are usually the agents.
+
+And what we do is that we use these MLL algorithms as part of our cognitive controller to ultimately have some sort of interaction and decision with the environment.
+
+So keep in mind ML algorithms, while they play a functional role in agents are not themselves agents.
+
+So we've talked about agents, we've talked about some of the information they might consider when making the decisions, but how exactly do we go about building an agent?
+
+We need a little bit more detail than what I have shown you before.
+
+Well, in order to build an agent, we need to consider something known as a design space.
+
+These are 10 dimensions, 10 dimensions of choices that describe an agent's complexity and how it views and understands the world.
+
+You can think of the design space as how you sketch out blueprints for your agents.
+
+Now, the choices you make with these 10 design space dimensions are gonna dictate both the architecture and the resource needs of your agent.
+
+Now, you don't want to automatically default to choosing the most complex design space for your agent because then it can handle any situation that's being thrown at it.
+
+You really need to choose what fits both your task and your budget best.
+
+Now, some of the tasks your agent might need to do could require more advanced levels of complexity to fully encapsulate them.
+
+And you might also be constrained by limited resources.
+
+So again, think wisely and critically about the choices you make as you go through and build your agent.
+
+So let's start with the first dimension in our design space.
+
+Modularity, here the tagline is, do we break our thinking into smaller pieces?
+
+For those of you with software engineering backgrounds, it's very analogous to think of modularity like microservices.
+
+Now, to walk through each of these design space dimensions, we are going to go ahead and use our lab delivery robot.
+
+I've got a nice little picture of him right here as an illustration for each of these dimensions.
+
+So if you think about this robot, he needs to do a number of different things.
+
+He has to plan his day.
+
+He has to make sure to deliver coffee on time, but he also needs to make sure he has time for longer trips, cleaning the lab benches, things like that.
+
+Now, there are three different ways that this robot could break down its thinking.
+
+The first is flat, there's no structure.
+
+The robot has to consider all of these tasks together in one large section, right?
+
+There's only one level of abstraction for each of these elements that the agent has.
+
+Now, the second is a modular representation.
+
+In this case, we might take all of those different tasks and break them into a number of subtasks.
+
+So an example for this robot could be, instead of trying to optimize all of its deliveries and time all at once, it might break it down into pick up coffee, move from lab 261 to office 315, put down coffee.
+
+The last dimension is hierarchical.
+
+In this case, you're using multiple modules, so it's still modular, but you're decomposing them into simpler tasks.
+
+In this instance, all of those sub tasks we talked about will be solved in a hierarchical way.
+
+So delivering and dropping off coffee, we're gonna break it down into its smaller components, such as find location of target of delivery and use wheels to move to delivery location.
+
+But even below that, we might have simpler subtasks, such as, well, I need to send an HTTP request to the wheels, and I need the wheels to make a particular motor control.
+
+So flat, modular and hierarchical.
+
+The next dimension we'll consider is planning horizon.
+
+For a given task, how far into the future do I need to consider?
+
+You have four choices here.
+
+Non planning where you don't consider the future at all, finite horizon where you need to plan a certain number of steps or time steps ahead.
+
+An indefinite horizon where you need to look ahead a finite but unknown number of steps in time, and then infinite horizon where you have to plan for eternity or perpetually making the right decision.
+
+Let's walk through how this impacts our robot.
+
+So at the lowest level, if we think about our robot stability mechanism, the robot needs to be staying upright at all times.
+
+That's an example where you might actually need to use an infinite horizon.
+
+Now, if we think about delivering coffee to a particular person, let's say scientist Dave.
+
+Well, if the robot does not have a defined delivery time, it knows that it won't take an eternity to deliver coffee to Dave, but we're not really sure how long it will take.
+
+Dave might be out of the office until noon.
+
+The robot might have to navigate from room to room because it doesn't know Dave's schedule.
+
+In that case, we know that we will eventually deliver coffee to Dave, but in this case we don't know how long it will take.
+
+Finite horizon, thinking about looking ahead a defined number of steps.
+
+Well, in this case, a good example could be battery life.
+
+For something like battery life, the robot's going to need to keep in mind and know that it only has three hours in which it can do tasks before it has to go back and recharge.
+
+So the battery charging application would need a finite horizon.
+
+And then lastly, we could have non planning.
+
+In this case, you could think of the robot's internal mechanisms that are running a modularity and understanding when bugs pop up.
+
+Now in this instance, we don't care into the future when a bug will happen.
+
+We want to be more reactive.
+
+The robot might say, I simply want to surface any alerts that my systems are going to report and then make sure that I can process them and get them taken care of.
+
+So that's an example of a non planning planning horizon.
+
+The next dimension is representation.
+
+How do I describe my world?
+
+In this instance, we have three options, states, features, and relations.
+
+Let's start with states.
+
+You can think of states as the snapshots of the world and every possible snapshot or configuration that your world exists in.
+
+So in this case, our robot might consider the state to be a map of the lab as well as the locations of every single scientist in the lab.
+
+Now, states are very useful, but the problem is you can get into a very large state space very quickly.
+
+Think of all the different configurations of all of the different scientists being even in something like the room or the lab at a given time, right?
+
+Thus, another option you have is to use features.
+
+Features condense the amount of space you need to represent the world.
+
+So in a simple example, if we want to look at a state where we say, okay, what room is every single scientist in?
+
+You could represent those as states or you could represent them as Boolean features, right?
+
+For each of the rooms.
+
+Is scientist Dave in room 101, is scientist Susie in room 101?
+
+The beauty of features is that, for instance, 30 of them on their own can describe the equivalent of over 1 billion states.
+
+So it's a great way to compress the information for your AI agent to process.
+
+Lastly, there are times when you might wanna describe your world in terms of relations.
+
+In this case, you could have the robot thinking things such as, okay, has coffee been delivered to Dave?
+
+Has coffee been delivered to Susie?
+
+Is my direct path clear?
+
+There are instances where just like features, condensing the representation of your world into a relationship network can be very valuable.
+
+Anytime you think about a social media tool, or an agent that needs to understand LinkedIn connections, relations can be a very effective representation of the world.
+
+Now, it's important to call out that you don't have to describe the entire world, just the part that's relevant to you.
+
+If our lab delivery robot lives inside the lab and never goes outside, then it might not actually be worthwhile to represent what the weather is outside.
+
+Or perhaps the color of scientist Dave's t-shirt, right?
+
+That information doesn't help the robot with its delivery, and hence, you can save space by not including it in your representation.
+
+Next, we have computational limits.
+
+Our tagline here is "How much and for how long can I think?" We've got two options, perfect rationality, and bounded rationality.
+
+Think of perfect rationality as the ability to think and pontificate until you reach the perfect solution.
+
+Bounded rationality is decision making where there's some form of constraint.
+
+It could be a resource constraint where you only have so much processing power inside the robot.
+
+Or it could be situational constraints, such as the robot needing to avoid a collision with scientist Dave.
+
+In this case, we would not want to have the collision avoidance function have perfect rationality.
+
+In that case, the robot might find the optimal way to get around scientist stave without spelling things, but it takes so long to compute that the collision already happened.
+
+In that case, we need to have bounded rationality as part of our design dimension.
+
+We also have learning.
+
+Where does the robots and the agent's knowledge come from?
+
+You have two options here.
+
+Knowledge is given.
+
+Think of this like rules-based systems or knowledge is learned.
+
+Machine learning models, right?
+
+So it could be the case that from the beginning we programmed the robot to have all of the knowledge it could ever need.
+
+Think back to some of those expert systems we talked about in the previous lecture.
+
+Alternatively, we might want the robot to be able to learn the knowledge by having an internal machine learning model.
+
+In this case, it might actually learn that slippery floors are in fact a function of shininess.
+
+The more shiny the floor, the higher the risk that it's slippery.
+
+Or it might also learn where each person spends their time at different parts of the day and when they'll ask for coffee.
+
+So learning is another important dimension for us to consider.
+
+Our next dimension is sensing uncertainty.
+
+Does our agent have a complete view of the world?
+
+The agent can either say it is fully observable where it sees everything in the world at all times, like it's omniscient or the agent is partially observable.
+
+There are things that can't see or it can't know.
+
+In our example here, consider the delivery robot and a scientist both walking through a corridor about to turn a hallway and potentially collide into each other.
+
+Now, neither the robot nor the scientist can see through walls, they don't know if the other person is coming.
+
+So in instance, we would say that the situation is partially observable.
+
+On the other hand, if the lab delivery robot was sitting in a security control booth and was able to look at video feeds of the entire lab all at once, then that might be a fully observable situation.
+
+Next, we have effect uncertainty.
+
+Do we know for sure what our action will cause.
+
+If we say, I can exactly foresee the outcome of my choice, I know exactly what's gonna happen, then we would describe that situation as deterministic.
+
+However, if we don't know as to what will happen, we would describe that as stochastic.
+
+So you could imagine stock market trading.
+
+If our lab delivery robot wants to go online and make a quick buck, it can trade stocks, but there's no guarantees as to whether those stocks will go up or go down.
+
+So that's a stochastic situation, and hence we would need to include a stochastic factor in our design space.
+
+Alternatively, we could say that if the robot has set up a string of dominoes and is about to knock them over, that might be more of a deterministic outcome because we know how gravity works.
+
+Now, granted, perhaps a scientist comes running around the corner and knocks some of the dominoes down.
+
+But in this case we would say for all practical applications, setting up and knocking over dominoes would be deterministic.
+
+We also need our design space to consider preference.
+
+How does the robot define success?
+
+We can keep things simple.
+
+Here we can say our preference is just a goal.
+
+In some final state, or perhaps across time there's a certain outcome that we want to make true.
+
+So for instance, we could have our lab robot deliver coffee to scientist Dave.
+
+Well, that goal would be outcome true in the right final state.
+
+Another example is we want a robot's goal to be stay upright at all times.
+
+That's an example of a goal that's true across time.
+
+But agents often have to make complex preferences and trade-offs.
+
+They need to consider the trade-offs between successful outcomes.
+
+So for instance, if our lab robot has to deliver coffee to scientist Dave and a letter to scientist Susie, how does it decide which to do first if they're not in the same room?
+
+That's an example of a complex preference.
+
+We then need to consider the number of agents.
+
+"Are there other people in my world?" There are three specific elements for this dimension.
+
+Single agent where the agent is really the only entity that it needs to consider.
+
+There's also the concept of adversaries.
+
+Is there another agent that's competing for me with a given task?
+
+And lastly, there are multiple agents.
+
+Are there other agents out there that I need to plan around but don't need to directly compete with?
+
+Now, the question that will often come up is how do we decide whether or not something is an agent or not?
+
+Now here again, if the robot never goes outside, a bird flying outside the lab shouldn't be seen as another agent.
+
+However, another delivery robot inside the lab would be considered an agent.
+
+So the line of thinking to always consider is, do we need to take the reasoning of this other entity into account?
+
+In this case, you would need to take the reasoning of this other delivery robot into consideration because you might want to plan, divide and conquer deliveries.
+
+You might need to say, I need to watch out for this robot as we're coming down the hallway so we don't collide.
+
+The other scientists in the lab would also be examples of agents because you need to take their reasoning and perhaps their grouchiness for whether or not they've had their coffee into consideration.
+
+Now, before we leave the dimension of the agent number, it's important to reemphasize the difference between multiple agents where you're not necessarily competing an adversary, where it truly is a zero sum game.
+
+It's you or it's them.
+
+Those two dimensions will have vastly different algorithmic and design implications.
+
+Lastly, we have interactivity.
+
+When exactly does the agent do its thinking?
+
+Well, you have online or offline.
+
+In online, the agent can compute, update it's understanding and do planning while engaging with the broader world, right?
+
+Think of it as real time.
+
+You also have offline, where the compute and updates happen outside of engaging with the world.
+
+In this instance, perhaps the robot only does its processing and updates while it's docked at its station for the night.
+
+Now, there are important infrastructure considerations if you want to have an online agent, that will need to be taken into consideration.
+
+Online is very powerful, but it has a lot of demands on the agent and on compute.
+
+So interactivity in particular, you're always gonna wanna keep in mind.
+
+Let's end with this high level overview of all the dimensions that we talked about, modularity, planning, horizon, representation, computational limits, learning, sensing uncertainty, effect uncertainty, preference, number of agents and interactivity.
+
+Now, this seems like a lot, but the good news is you don't actually have to redefine your agent's design space from scratch every time.
+
+In practice, what you will do is you will choose a template of design space for a given problem.
+
+For instance, if you are designing a web crawler or an AI chat bot, you're going to have a specific configuration of dimensions based off of how you decide to build and resources.
+
+The same thing is true for self-driving cars.
+
+So while it is important to understand and know these dimensions, realize that you're not gonna have to start from scratch every time.
+
+There is a lot of domain information that you can use to simplify this problem.
+
+Thank you for watching this presentation.

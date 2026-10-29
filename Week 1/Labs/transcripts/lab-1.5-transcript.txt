@@ -1,0 +1,105 @@
+Welcome to part two of the Module 1 Lab.
+
+Today we are going to build our very first basic AI agent using a Python package known as LangChain.
+
+Now, LangChain is a framework that's been designed to help developers build applications with LLMs.
+
+Now, what does LangChain do you might ask.
+
+It does a lot of things.
+
+What it does is it provides you with a powerful toolkit to building LLM powered apps.
+
+It will give you capabilities like retrieval augmented generation, memory management, chaining together LLM calls and logic, and yes, the ability to build agents.
+
+Today we're going to use LangChain in conjunction with Google Gemini to be the brain, if you will, or the controller of an AI agent that has the ability to query Wikipedia based off of user prompts.
+
+So let's go ahead and get started.
+
+Well, we'll start by installing the necessary packages.
+
+We have LangChain, the Wikipedia Python package, Google's generative AI package, another package called LangChain Community, that is, say, the community centric tooling that's been built to support LangChain.
+
+And then lastly, we have LangChain's package for engaging with Google Gen AI.
+
+In these lab sessions, I am going to use Google Colab because it makes package management a lot easier.
+
+And as those of you in software engineering know, Python's package management ecosystem is a mess.
+
+But Google has made it easy.
+
+You're more than welcome to follow along and even submit your homeworks as actual Jupyter Notebooks, but I simply find Google Colab easier.
+
+The first thing we're going to do is we're gonna connect to the Gemini API.
+
+One of your required readings in this module has been how to set up and access a Gemini API key, and then load it in from Colab Secrets.
+
+Before you go any further in this lab session, please watch that video, go ahead and get it set up.
+
+Once you've done that, we're gonna go ahead and we're gonna load our API in from Colab Secrets.
+
+So let's go ahead and do that now.
+
+Perfect.
+
+Now let's talk about how to build a basic LangChain agent.
+
+Well, one side note on LangChain is that there are going to be a lot more import statements than you might care to have, but that's because LangChain has a wide array of capabilities more than you could ever use.
+
+We're gonna go ahead and we are gonna walk through each of these tools now.
+
+So we've gone ahead and we have input all of the necessary downloads and all of the necessary packages are officially in place.
+
+So the next thing we're gonna do is we are going to go ahead and create a tool to access Wikipedia.
+
+See this as a direct import so that we can access Wikipedia's API, and then there's a secondary line that provides a wrapper utility around the Wikipedia tool itself.
+
+Once we've created the Wikipedia tool, we're gonna go ahead and we are going to initialize Gemini as one of the LLM options in our LangChain configuration.
+
+So go ahead, we call out, we're gonna use Gemini 1.5 latest.
+
+I have set the temperature to zero.
+
+Those of you familiar with generative AI means that I'm not going to have much of a tolerance for stochasticity in this model, and we'll talk later about what that means, as well as the Google API key, which again, I've passed in as an environment variable.
+
+Now lastly, in this code, I'm going to initialize the LangChain agent itself.
+
+And it's kind of a neat little layout.
+
+So I say, here's my agent, here's the tool I'm gonna give it access to.
+
+Remember, when we actually go back and think about agents, it's nice to have the ability to say, here is a list of my effectors, the LLM brain that we are going to use, and then the type of agent that we want to have here.
+
+So don't worry too much about this specific description, zero shot react description, but know that this is a very specific type of agent and the way that the agent thinks and processes.
+
+Let's go ahead and we're gonna run this code.
+
+Alright, and we've created our agent.
+
+Now, this agent, again, has the ability to take in a prompt and query Wikipedia for the answer.
+
+So let's go ahead and ask the agent, what is the capital of France and see what we get.
+
+Now as it's thinking, you'll notice that we set the verbose argument variable to true.
+
+What that means is we can actually walk through and see the chain of thought, how this agent got to the decision that it did.
+
+It's like we're opening up the controller and understanding how it got there.
+
+So you can see I need to find the capital city of France.
+
+Wikipedia is a good resource.
+
+Well, when Wikipedia is your only tool, of course it's a good resource.
+
+You can see the action choice, the input.
+
+It returns a list of capitals of France from a specific page, and then you can see that the tool then says, "Hey, here is the information." So the LLM says, "This is a chronological list in France.
+
+The capital of France has been Paris since its liberation in 1944.
+
+I now know the final answer, which is Paris." So the finished chain, the finished output is Paris.
+
+Now you're gonna have the ability to expand on this basic agent and add more tools, perhaps go after more complex questions.
+
+But for today, we are concluding by showing you how to build a basic AI agent.

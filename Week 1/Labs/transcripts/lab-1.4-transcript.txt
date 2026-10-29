@@ -1,0 +1,333 @@
+Welcome to the Module 1 lab session.
+
+Our goal with these sessions is to take all of the academic content that you have learned in the lectures preceding and translate it into an effective, useful way to apply those skills in your day-to-day careers and lives.
+
+Today, we're going to start off with something that's not actually code-related but is an extremely important part of any AI practitioner's career and in fact will be a large part of the rest of AAI-501.
+
+If you have looked ahead in your class assignment, you will note that each week we will be conducting what's known as a weekly literature review.
+
+Now, each week, you are going to be asked to review one new technology-related article that's been published in the last week.
+
+Now, there's a line in here that says:
+
+"In order to do so, you will need to have "identified and curated "a collection of sources to pull from - "the collect in the search, collect, process "reviewed in class." Don't worry: this is the presentation where we get to talk about search, collect, and process.
+
+Now, what you're going to need to do for our first week is identify five information sources you're gonna monitor during this course and then set up a workflow that talks through how you're going to monitor and aggregate all of the content and articles that come through these sources.
+
+And you might be asking:
+
+"What exactly are we trying to do here and why?" The essence of this request for Week 1 and for each of the modules moving forward is I wanna make sure that every student here gets in the habit of reviewing scientific literature as well as content related to blog posts and other developments within the artificial intelligence field.
+
+Now, the reason it's important for us to develop and cultivate a habit of staying in the scientific literature in blog posts, tech articles, and everything in between is because it's very difficult for us to stay relevant in the artificial intelligence field given how vast it is and how quickly it moves.
+
+We have already seen in class just how widespread AI is:
+
+from computer vision to manufacturing to medical diagnosis.
+
+We've also seen how the field itself moves at a light-speed pace.
+
+We went from microworlds in the 1970s where there's manipulation of basic blocks and shapes to a powerful resurgence of deep learning that's causing superhuman abilities in 50 years.
+
+As someone who has been in industry for quite some time and led many data scientists, I believe that staying up-to-date on the developments in artificial intelligence is one of the most important skillsets we can have.
+
+It's how we avoid the trap of obsolescence.
+
+It's how we make sure that we are using the latest and greatest approaches and that we're not missing anything in our day-to-day lives.
+
+And if you think about it, it's part of why a lot of us chose this field to begin with.
+
+We get into artificial intelligence because it has such a fast pace in its ability to learn new things.
+
+So, in my opinion, it is absolutely crucial for everyone to understand how you stay up-to-date on developments in the field, both for your career relevance as well as for your overall enjoyment.
+
+Now, if you buy this hypothesis I have, that it is important for us as AI practitioners to stay in the literature, the next question you have is: "How exactly do I do it?" I could perhaps watch a bunch of YouTube Shorts that are out there with many, many different content creators.
+
+I could look for specific blog posts like Towards Data Scientist's.
+
+I could look at articles posted on LinkedIn.
+
+I could ask ChatGPT.
+
+We know now that staying up-to-date is essential for career relevance, but if we don't do it right, we could end up wasting time, missing critical insights, and ultimately lose motivation.
+
+And this is where the search, collect, process approach comes into play.
+
+As I said at the beginning of this video, you're gonna have a chance to build your own search, collect, process approach, and, more importantly, have the chance to live into it over the next several weeks.
+
+So let's talk through SCP.
+
+First, you need to start by finding high-quality sources.
+
+You need to search for the content that's relevant and impactful.
+
+You then need to collect.
+
+Just because you have a bunch of sources and a bunch of articles doesn't mean that you should read all of them or watch all of the videos.
+
+There's a process of curation to find the best and most relevant for you.
+
+And then, lastly, you need to process.
+
+Not every article needs to be read in depth backwards and forwards five different times.
+
+There's actually an art to understanding the right level of processing that a given blog post or video or article should have.
+
+Now let's start by talking about search.
+
+How do we find some high-quality sources from which we can get news and information updates about the field of AI?
+
+Now, your mileage may vary.
+
+One of the things that I'm most excited about for this course is everyone is going to have a unique perspective and a perspective that every student can learn from.
+
+So don't take what I'm about to show you as the only way to do the SCP process, but see this as a suggestion, a starting point.
+
+For me, I have found a lot of success focusing in four main buckets for finding high-quality information.
+
+I start with the sites of tech companies.
+
+Meta produces a fantastic AI blog.
+
+The Netflix Tech Blog has been around for several years and has some of the best infrastructure developments that I've personally seen.
+
+There are also aggregator platforms.
+
+Think of these as news sites that collect articles from many different independent writers, almost a Substack, if you will, for data science and AI information.
+
+Two of my favorites are Towards Data Science, which is on Medium, and KDNuggets.
+
+Now, it is often worthwhile to follow some of the top personal experts out there.
+
+Many of you have heard the name Andrej Karpathy, one of the very extensively involved leaders in the generative AI and deep learning space.
+
+Andrew Gelman is one of the world's foremost authorities on statistics.
+
+I personally find him very relevant.
+
+But your mileage may vary.
+
+Lastly, I wanna call out that we don't have to limit our search to text articles only.
+
+YouTube has many fantastic videos and explanatory videos that highlight some very complicated techniques and make it accessible.
+
+For me, I personally like the sites 3blue1brown and Google Cloud Tech.
+
+Again, don't take this as the only way and only places that you can find high-quality sources, but see it as a launchpad.
+
+Now let's move on to collect.
+
+If you follow all of those sources I just mentioned, you could end up with hundreds of possible articles or videos to read.
+
+How exactly do you go ahead and process them?
+
+How do you choose which ones are effective and which ones you can ignore?
+
+Well, to do that, you need to start by putting all your sources into one place.
+
+One of the biggest drags I've seen in staying up-to-date on literature is trying to go to many different websites or video hosting sites as opposed to saying:
+
+"There is a one-stop shop "for me to put all this information." So for me, I love RSS feeds, so I'm going to use an aggregator like Feedly where I can take all of those different sites I just told you about, pipe them in, and then actively review the headlines, right?
+
+So you can see over here:
+
+Feedly has a very nice mobile app where I can see all the articles that are coming in.
+
+Now, some people prefer Notion, some people prefer Pocket.
+
+Again, the specific technology that you need might be different than what I need.
+
+But the essence here is we want to take all that information we just identified, all of those sources, and put it into one information lake, so to speak.
+
+Now, once we've done this, it's important to selectively and judiciously process.
+
+Now we need to filter for the appropriate level of learning.
+
+There are three specific levels at which I believe any paper should be read, any blog post should be consumed, or even any video should be watched.
+
+That's title, synopsis, and deep dive.
+
+The first level, and this is the level that the vast majority of articles will stop at, is title.
+
+Is this topic relevant?
+
+If we think about all the different articles that could be coming in from the Netflix Tech Blog, so to speak.
+
+If I'm an AI practitioner, I'm gonna care a lot about their new causal inference engine but perhaps not so much about how they do their distribution of content at scale via caching.
+
+Perhaps I am, but odds are that I'm not.
+
+So first level is title:
+
+is the topic relevant?
+
+And what you'll end up finding is that if you have 10 articles that come into your feed a day, there's probably only gonna be about three that you find interesting.
+
+Now, of those three articles, they're going to go to the synopsis level.
+
+Those of you who come from science, think of this as reading the abstract of a scientific article.
+
+In synopsis, you're gonna take those three articles and you're gonna skim them.
+
+You're gonna say: "Okay, what is the core idea "that I need to take away from this?" What's nice is that if an article might take you, let's say, 10 minutes to read, if you learn how to skim, to synthesize quickly, and identify the core idea, you can go through the synopsis phase in one minute or two minutes.
+
+And as I'll show you in a little bit, large language models are extremely powerful for the synopsis phase.
+
+So we've gone from 10 articles that we ran through title.
+
+We found three of them that were interesting enough to pull out the core idea, the synopsis.
+
+And now we go on to the deep dive.
+
+This is where you read the entire article.
+
+This is something that is so relevant, so important to you that you can't help but go deeper.
+
+If you've got three articles in synopsis, you might have one that you do a deep dive on.
+
+And this is an area where you're gonna go through the whole thing, you might actually go out and look at some of the URLs in the article or some of the other information, the video links.
+
+The essence here is: how do I learn more?
+
+But I wanna point something out here.
+
+In this process, we went from 10 articles in a given day that came through our sources.
+
+Again, that's gonna be quite a lot of time if we read all of them backwards and forwards.
+
+We filtered them down to three by saying: is this topic relevant?
+
+By looking just at the title.
+
+Of those three articles, we read their synopsis, we pulled out the core idea, and we ended up with one article that we would do a deep dive on.
+
+So you can see how all of a sudden we went from having to read 10 articles or watch 10 videos to one, simply by focusing at the right level.
+
+So once again, we have search, collect, process.
+
+Start by finding those high-quality sources.
+
+Pull them into a one-stop shop, an information lake so that you can start to curate them.
+
+And then process, review at the right level, whether it's title, synopsis, or deep dive.
+
+Now, I've been following the SCP protocol for about seven or eight years now, and the advent of generative AI, in my mind, is the next frontier for how we can all engage with and consume information.
+
+Generative AI enables us to cast a wider search net.
+
+It enables us to create summaries of articles and even engage in tutoring, a question and response pair where you can give generative AI an article and ask questions about it, follow-ups.
+
+Lastly, I'm particularly excited for the Google product NotebookLM.
+
+This is perhaps the product that has had the most substantial impact on my learning to date since graduate school 15 odd years ago.
+
+Let's think about how we could use generative AI to perhaps turbocharge the SCP process.
+
+What I'm gonna show you here is a prompt template for developing the summary of an article.
+
+So as you can see, I can tell my generative AI tool to visit a URL and summarize the article.
+
+I can give it a persona, a chief AI officer, right?
+
+High-level strategy.
+
+A staff engineer, which is gonna have a slightly different tack.
+
+And then I can tell generative AI to format the response with a three-sentence summary, strategic insight for enterprise AI adoption if that's what I care about, questions I might ask my AI or data team, and any notable quotes or data points.
+
+So, again, think about how this can turbocharge our curation, and, in particular, the synopsis step of the process we've talked about.
+
+We can also use generative AI to go out and find the important news stories for us.
+
+One prompt template I like in particular is using generative AI to search for the top five new articles in the past week related to some set of topics that I care about.
+
+Once again, I can have GenAI summarize those articles, title and source, summary, insight or trend, and link to the article.
+
+For those of you who are already in industry, you can even use ChatGPT and other generative AI tools for competitive intelligence.
+
+I can provide my generative AI tool with a URL to my competitor's product release or blog post.
+
+And then I can ask very direct questions.
+
+What's being released?
+
+What exactly does it mean for my competitor?
+
+What does this mean for my strategy?
+
+If I'm at Meta and Google releases a new version of Gemini, what does that mean for me?
+
+And then what exactly makes this announcement technically or commercially significant?
+
+Now, a word of caution:
+
+generative AI is a copilot, but it is not an autopilot.
+
+You need to take the outputs of these prompt templates I've given you and pass them through a critical thinking filter.
+
+Does it make sense?
+
+How exactly does it line up with what you would've expected?
+
+Again, don't simply copy and paste.
+
+See this as a way to have a junior analyst working for you to surface key insights and provide a point of view.
+
+That point of view might be correct, might not be, but the more POVs you have in life, the better.
+
+Now, lastly, let's talk about NotebookLM.
+
+I'm not going to walk through NotebookLM in detail.
+
+We've posted links to a couple of tutorials.
+
+But, to me, this is the tool that I go to every day when I want to understand and find, and, more importantly perhaps, synthesize all the information that we're getting in the field of AI.
+
+So let me walk you through what exactly NotebookLM is and how I use it.
+
+So the functionality behind NotebookLM is:
+
+you can think of it as a local language model with retrieval-augmented generation focused to a set of sources that you receive.
+
+Put another way: I have the power of Gemini specifically focusing in on some subset of information that I give it.
+
+Now, in NotebookLM, you can add all sorts of sources, and what I personally do, going back to my RSS feed, is I look through and I say:
+
+"Hey, here are the five articles "that made it to the synopsis phase." I then copy them over and upload them into NotebookLM.
+
+Now, what does this do for me?
+
+You actually get a couple of really neat functionalities.
+
+What NotebookLM does is it will provide an overarching summary of all of these articles, but it will also enable me to ask questions.
+
+So one of the articles that I have put in here is about how Claude Code now has remote MCP support.
+
+I could perhaps ask: "What are the specific tools "that Claude Code supports remotely?" Right?
+
+The other really neat functionality that comes straight out of the box for NotebookLM, the one that I use the most, is that it creates an audio overview.
+
+Think of this as a podcast generated on these specific articles.
+
+For me, I am personally an auditory learner.
+
+So what happens is I can take all these articles that might take me 45, 60 minutes to read, and I can listen to and synthesize that information in 20 minutes.
+
+There are some other neat functionalities where you can actually ask for a study guide or a briefing doc to be created.
+
+Again, think of this as a little bit of a cheat sheet that you can use to understand your articles.
+
+So with that, let's review the assignment for this week and moving forward.
+
+Again, you need to start talking about one article that's been published in the last week.
+
+This week, you need to identify your five sources and set up your collect workflow.
+
+Now, to be clear, you might like the SCP approach.
+
+You might instead prefer to go your own way.
+
+That's completely fine.
+
+But my ask of you is to critically think through how you can set up a sustainable habit and capture it in your assignment this week.
+
+Thank you for watching this presentation.

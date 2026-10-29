@@ -1,0 +1,233 @@
+Welcome to module one of "AAI-501: Foundations of AI." To start this course off, we're gonna begin by discussing the basics.
+
+What exactly do we mean by artificial intelligence?
+
+And what are some of the applications that artificial intelligence has today?
+
+The first question we need to answer is:
+
+what exactly is artificial intelligence?
+
+It seems as though AI is all the rage these days.
+
+You can't go more than 24 hours without somebody saying how wonderful AI will be for the future, or how artificial intelligence is a security risk that will take all of our jobs.
+
+But if you were to ask five different people what AI specifically is, you'd likely get five different answers.
+
+For some, they might say artificial intelligence is a bunch of professors in a lab somewhere creating robots and programs that do certain things.
+
+For others, they might point you to ChatGPT and the recent boom in generative AI, where hundreds of millions of users per day are leveraging ChatGPT to make their lives easier.
+
+Alternatively, some people might point to the advanced functionality that many systems offer today, for instance, a photo editor that automatically tags and organizes, and edits your photos.
+
+Or lastly, you might get people talking about how AI is going to become a robot that takes over the world and destroys us all.
+
+Now, all of these are applications of artificial intelligence, but at its core, artificial intelligence is the study and construction of computational agents that act intelligently.
+
+Let's break this down by looking at the key words in this sentence:
+
+It's the study and construction of agents that act intelligently.
+
+So you'll notice that there are actually two things.
+
+It is the synthesis, the understanding, of computational agents that act intelligently, as well as the construction, the building, right?
+
+So it's an understanding as well as an application.
+
+Now, what this means at a high level is it's about understanding intelligence and building intelligent systems.
+
+But what exactly do we mean by agents and acting intelligently?
+
+You most likely have heard the term "AI agent" all over the place, but the concept of an AI agent is actually nothing new.
+
+In the field of AI, an agent is anything that can both perceive its environment and act on that environment.
+
+So here we have an example of a canonical agent.
+
+The agent is right here, and it exists in some sort of environment.
+
+It understands and experiences that environment through perception, right?
+
+It also then has the ability to make decisions, choices, based on that information and what it wants to do, through actuators, right?
+
+Or effectors that cause actions.
+
+So you can think of it as this beautiful input and output flow.
+
+But how exactly do we define intelligence?
+
+There are two main dimensions along which you can define intelligence.
+
+Is it thought or action?
+
+And then, do we consider intelligence human intelligence, or rationality?
+
+This means that there are a total of four different ways we could define intelligence.
+
+Perhaps it's thinking like a human.
+
+Perhaps it's acting like a human.
+
+Perhaps it's thinking rationally, or it's acting rationally.
+
+Now, the difference between thinking and acting is pretty straightforward.
+
+Do we care about an internal cognitive process, or do we care about effects?
+
+When we talk about rationality, what we mean is doing what maximizes the expected outcome given current information.
+
+Now, you might think that there is no difference between rationality and human behavior.
+
+However, human behavior is often irrational.
+
+If we say we want to act or think like a human, that means we would have to consider emotions.
+
+We would have to consider our physical state.
+
+Am I tired?
+
+Am I sleepy?
+
+As a result, the field of artificial intelligence is all about rationality, and more specifically, acting rationally.
+
+But if we use this definition of intelligence, that it's all about acting rationally, it's very important to realize that this doesn't mean that we will always end up with the best outcome possible.
+
+One of my favorite quotes out there is from Captain Jean-Luc Picard of the old "Star Trek" series.
+
+His statement, "It is possible to commit no mistakes and still lose.
+
+That is not a weakness, that is life," perfectly encapsulates what we mean by rationality.
+
+A rational agent cannot see into the future, right?
+
+Perhaps it said rationally it's not worth investing in Bitcoin in the year 2012.
+
+All available information to the agent might have suggested that's not a good play.
+
+However, if you look at where Bitcoin is today, you would say, "Wow, the agent definitely missed it." However, at any given point, you can only use the information at hand.
+
+So that is very important.
+
+Rationality does not guarantee optimal outcomes at the end of the day.
+
+We touched on this a little bit before, but artificial intelligence is, in fact, both digital and physical.
+
+If we go back to the concept of an agent, well, you could imagine an example of an agent being a delivery robot.
+
+Now, this agent would see and experience the physical world, and then it might do something based off of that information.
+
+It might say, "Okay, there's a car right in front of me that I need to navigate around," and ultimately it would make decisions and make its delivery in the fastest way possible.
+
+However, it is also possible for agents to have no physical body.
+
+It might be entirely digital.
+
+For this, let's imagine a web agent that lives somewhere in the Google data center, right?
+
+A web crawler.
+
+In this case, this specific agent's environment is all digital.
+
+It is web pages.
+
+It is the internet.
+
+It ultimately then will use its algorithmic brain to search around on these web pages and index them.
+
+At the end of the day, this digital and physical delineation is one of the most important concepts to get.
+
+We tend to think of agents as having to be physical, but nothing could be further from the truth.
+
+So we say that our agent has embodied AI if it has a physical body, or if it only has a digital body, it's typically known as a software agent or a bot.
+
+And today, the AI agents, agentic AI, this term that you're hearing, usually refers to digital agents.
+
+Now, let's conclude our lecture today by talking through several specific applications of artificial intelligence.
+
+The first is decision-making.
+
+AI is great at helping augment human understanding and knowledge.
+
+The first application within decision making is diagnosis.
+
+Can the agent help determine whether or not a patient has a tumor or no tumor based off of CT scans?
+
+Forecasting is another fantastic decision-making application.
+
+If a forecast says, "Hey, we need to buy more of our favorite product so that it's on the shelf for our customers," then that is extremely important in the business world.
+
+And then the last instance of decision making we'll talk today is travel planning.
+
+Many companies, many different organizations, have to think through, "How do I optimize getting my goods from point A to point B?" This is a very important problem, and artificial intelligence is great at helping take messy, perhaps human-determined delivery routes and turning them into something sensible.
+
+Another very important application of AI is computer vision, the idea that it can take in pictures of the world and do different things with them.
+
+Perhaps the most basic form of computer vision is object detection.
+
+Can we identify the puppy versus the kitten versus the duck?
+
+Now, object detection is a foundational application of computer vision that then could be applied to something like quality control.
+
+Think of a manufacturing facility that churns out hundreds of thousands of key medicinal products.
+
+You need to make sure that these products are up to par and aren't going to give patients any bad reactions or are perhaps defective.
+
+While robots have fantastic throughput, and if you have a system equipped with computer vision, you can make sure that what you see is, in fact, up to the standards it needs to be.
+
+Now, there are many other applications of computer vision, but one very fascinating one is handwriting recognition.
+
+If you think about the US Postal Service for a second, think of all the letters they get on a daily basis.
+
+All those handwritten or perhaps typed addresses.
+
+Those are not letters that can be fully sorted by humans.
+
+And so you need a system to effectively read, is this letter going to St. Louis, or is this letter going to St. Paul?
+
+And that is one of the most impactful applications of AI that we've experienced, perhaps on a daily basis, that nobody truly thinks about.
+
+Another key application of artificial intelligence, moving from perhaps the digital world to the physical world, is robotics.
+
+Self-driving cars are all the rage.
+
+And if you think back to our conversation about computer vision, a great application of computer vision is going to be creating a self-driving car that can identify pedestrians, other vehicles, and navigate itself around roads.
+
+Manufacturing is another massive application of AI.
+
+Most manufacturing facilities today are extensively equipped with robots that can move much faster and more precisely than humans can.
+
+But artificial intelligence also needs a brain to help those robots know what to do.
+
+Lastly, there's been a lot of talk lately about humanoids, particularly from Tesla.
+
+Perhaps one day in the not-too-distant future, we will have humanoid robots that can anticipate our every move, can do our housework, go shopping for us.
+
+We're not there yet, but this is perhaps one of the holy grails of AI is creating the robotic person.
+
+Now, there are many other applications of AI, but the last one we will talk about today is natural language processing, or NLP.
+
+NLP is the ability for AI to understand, to receive spoken text, maybe it's listening, maybe it receives a voice file, and translates it into understandable language.
+
+This is exactly how ChatGPT can work.
+
+ChatGPT takes prompts written in different languages, but always in a human language, parses it, understands it, and does something.
+
+Google Translate is another fantastic example of natural language processing.
+
+You might perhaps want to translate a sentence from English to Spanish.
+
+In that instance, AI needs to read in and understand the intent, the sentiment, the context of your English sentence, and then translate it to Spanish.
+
+And lastly, once again, humanoids are an application of natural language processing.
+
+If they exist, we'll need to be able to speak with them.
+
+They'll need to be able to speak with us.
+
+The beauty of natural language processing, and why it has become so prevalent, particularly in the generative AI world, is this is how artificial intelligence becomes accessible to everyone.
+
+Not every person on Earth will be a software engineer or a data scientist, but we can understand and use language.
+
+So, as we move forward in the field of AI, NLP and its applications are only going to continue to grow.
+
+Thank you for watching this presentation.

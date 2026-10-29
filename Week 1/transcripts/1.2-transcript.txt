@@ -1,0 +1,287 @@
+Welcome to module one of AAI-501, A history of AI.
+
+Before we begin our deep dive to uncover how modern-day artificial intelligence operates, we need to take a look back at where we've been.
+
+Technology, and AI in particular, has a habit of repeating itself.
+
+There is nothing new under the sun.
+
+Old ideas suddenly become new, what seemed impossible just 10 years ago all of a sudden is feasible and practical, so it's important for us to ground ourselves in an understanding of how the field has evolved over time.
+
+It turns out that humans have been fascinated with the concept of artificial intelligence for centuries.
+
+Going back to as early as 700 BC, the Greek philosopher Homer talked of mechanical tripods that waited on the gods at dinner and had been created by the god of technology and blacksmithing.
+
+In ancient China, you see references to a mechanical man who walks, talks, and acts just like a real human.
+
+Now, these types of fantastical descriptions are scattered throughout ancient literature, but things start to get interesting in the 1600s with a man named Thomas Hobbes.
+
+Some of you may know Thomas Hobbes as a famous philosopher, and perhaps one of his most important contributions that arguably kicked off the field of artificial intelligence is this idea that human thought, human cognition is what's known as symbolic reasoning.
+
+Put another way, Hobbes believed that all of human thought could be translated into a representable format on paper, through symbols, through handwriting; or said another way, he believed that reasoning could ultimately be narrowed down and condensed into a repeatable process that's visible by others.
+
+Sounds a lot like modern-day computer code.
+
+Now, if Thomas Hobbes was important for introducing this concept of symbolic reasoning, a man hopefully everyone knows named Alan Turing took it to an absolutely new level.
+
+In my opinion, Alan Turing is seen as the godfather of artificial intelligence.
+
+He had many contributions to the field of computational science during his lifetime, but there are three in particular that we need to be aware of.
+
+The first is what's known as the Church-Turing thesis.
+
+Now, this thesis says that all computation can be carried out on what's known as a Turing machine.
+
+You can think of a Turing machine as a conceptual computer.
+
+Remember, back in Alan Turing's time, computers hadn't truly been invented in the way that we know them today.
+
+Now, the Church-Turing thesis, though it cannot actively be proven, it has not been disproven.
+
+It's a hypothesis that has stood the test of time.
+
+This idea that all computation, right?
+
+All of this symbolic reasoning being able to be captured and carried out on a computer has never been disproven.
+
+There is no evidence that there are somehow functions that are not computable by these machines.
+
+Now, what this also does is it provides an argument that computation isn't just a metaphor for intelligence.
+
+As I mentioned before, it provides strong evidence that reasoning is in fact computation, and hence, computation can be carried out by a computer.
+
+Now, that's the first of Alan Turing's contributions.
+
+The second is the Turing test.
+
+Many, many of you have seen and heard about the Turing test.
+
+We're going to talk about it in a second, but at a high level, the Turing test is a very important milestone for determining how human-like computers are.
+
+Lastly, Alan Turing was in fact the original creator of one of the earliest digital computers, the Automatic Computing Engine, or ACE.
+
+So for many reasons, we owe the success of our field largely to the foundation laid by Alan Turing decades ago.
+
+Now let's talk more about the Turing test.
+
+The Turing test is at its core an intelligence test that judges external behavior, right?
+
+Think back to how we defined artificial intelligence in the previous lecture.
+
+We care about behavior.
+
+But we're gonna turn things a little bit on its head.
+
+The goal in the original Turing test is that you have three players.
+
+You start off with a computer.
+
+You can call that computer player A.
+
+You have a human responder known as player B, and in the middle you have an interrogator, player C.
+
+The setup of the Turing test is that the interrogator, through talking with a computer and with a human responder, needs to determine through a series of questions and answers whether player A or player B is the true computer.
+
+And if, in fact, the computer can convince the interrogator that it's human about as often as the human can, well then we can say that the computer passes the Turing test.
+
+There's been a lot of discussion about this in the literature and in the field lately about how intelligent computers are, and the thought was once we reached a point where computers could convince an interrogator that they are as human as an actual human, well, now you've crossed a very important threshold for how intelligent artificial systems can be.
+
+And it turns out that as of April 2025, large language models can officially pass the Turing test.
+
+A study produced by two professors at the University of California San Diego set up a Turing test using a human interrogator, a human questioner, and GPT-4.5 as the computer.
+
+Now, they ran the standard three-person Turing test, and they had the interrogator ultimately determine whether the computer or the human was the real, quote unquote, "human." And it turns out that GPT-4.5 was judged to be the human 73% of the time.
+
+So let that sink in for a second.
+
+We are now at the spot where large language models are more convincingly human, arguably, than actual humans.
+
+Well, the question is now what?
+
+This is going to be an ongoing discussion for many months and many years to come, but it just highlights how exciting it truly is to be in the field of artificial intelligence at this moment.
+
+Now let's return to our historical journey in understanding the development of artificial intelligence.
+
+Once Alan Turing laid the foundation for AI, you'll start to see a number of perhaps more modern AI approaches starting to pop up.
+
+Neural networks, in fact, were first proposed by McCulloch and Pitts back in 1943.
+
+Neural nets and deep learning are nothing new.
+
+It's a concept that's almost 100 years old.
+
+And then in 1956, you have a foundational, seminal moment for the field of artificial intelligence:
+
+the Dartmouth conference, otherwise known as the birthplace of AI.
+
+Now, this 1956 Dartmouth conference was organized by several world-leading experts, faculty members, industry professionals in fields that surrounded what we now know as AI.
+
+So think about computer science, information theory, and the like.
+
+You have some very heavy hitters like Marvin Minsky, John McCarthy, and Claude Shannon coming together to establish the concept of artificial intelligence as a discipline and promote collaboration.
+
+And in fact, this conference was where the term artificial intelligence was originally coined.
+
+Now, this then sets the foundation for artificial intelligence to have three very pronounced boom and bust cycles through the next 70 years.
+
+Like many technological experiences, AI tends to go through periods of excitement followed by AI winters where there's not a lot of excitement.
+
+There's a lack of funding and general interest.
+
+You will see in the slides ahead that this is nothing new for AI, and in fact, in my opinion, we are currently living through not the first AI boom, but the fourth AI boom.
+
+Let's talk about the first AI boom that took place in the 1950s, right around and shortly after the Dartmouth conference.
+
+This boom was driven by advances in language translation.
+
+This is the height of the Cold War, and there is a desire to use artificial intelligence to more effectively translate between English and Russian.
+
+And university professors at Georgetown, in partnership with IBM, ran an experiment where they were able to successfully translate about 60 Russian sentences into English.
+
+Now, this was a great success, they were able to receive lots of funding, but it turns out the language translation wasn't exactly perfect.
+
+Very basic sentences like "my name is John" were able to be translated, but when advanced context was added to the picture, things got a little bit more challenging.
+
+For instance, there's a famous sentence, "The spirit is willing, but the flesh is weak." When translated to Russian and back, you end up receiving, "The whiskey is strong, but the meat is rotten." In this case, instead of spirit being the human spirit, it was misunderstood to mean whiskey.
+
+Similarly, flesh was not understood to be the human body, but rather meat.
+
+So, there might've been some initial progress in those 60 sentences, but these systems struggled with advanced context, which is really what you need if you want to be successful at translation.
+
+And ultimately, in 1966, the US government decides that all of this progress, well, isn't progressing and cuts off funding.
+
+This, in turn, led to an AI winter that lasted through most of the 1960s.
+
+Now, the second AI boom, which took place in the 1970s, centered on a concept known as microworlds.
+
+The idea that AI practitioners had was, well, the world that we see and experience with on a daily basis, it's actually pretty complex.
+
+What if, in fact, we decide to shrink the world, strip out the noise, and reduce it to something more manageable?
+
+And this effort was led by a man named Marvin Minsky.
+
+You may remember this picture from last lecture.
+
+Marvin Minsky was one of the original attenders of the 1956 Dartmouth conference, and his idea was that if he trained an artificial intelligence system to understand the world not for all its complexities, but perhaps as a simple collection of blocks, maybe 5, 10, or 15 blocks, then you could actually train an AI system to manipulate these blocks, stack them together, lay them out in a line, things of that nature.
+
+At the same time, the world's first AI chatbot known as ELIZA was released.
+
+ELIZA is what's known as a Rogerian therapist, and Rogerian therapy centers around reflecting back the patient's responses in the form of questions.
+
+So in this instance, ELIZA shrunk the world of psychology, not to all of the diagnoses that might be out there or all of the possible therapeutic approaches, but simply a call and response where ELIZA would simply reflect back and in essence, restate the patient's response as a question.
+
+Now, these advances were very exciting, but it turned out that these smaller worlds, like you'd expect, don't often generalize usefully.
+
+And in 1974, the United Kingdom government put out a report called the Lighthill Report, which declared an "utter failure of artificial intelligence to achieve its objectives." This then led to the second AI winter.
+
+And the third AI boom took place in the 1980s and centered on the concept of expert systems.
+
+The prevailing thought was, well, we have lots of domain experts in fields like medicine, in science, in engineering.
+
+What if we encode all of that domain expertise?
+
+And in fact, you can think of an expert system as a large rules-based system.
+
+These systems consisted of a few pieces.
+
+They consisted of a knowledge base, which was just a collection of those if/then rules.
+
+It also had an inference engine.
+
+This engine used logical reasoning and applied it to those rules based on user-provided facts to derive conclusions.
+
+And then lastly, a working memory or fact base where you stored facts or assertions about the problem domain.
+
+Again, an advanced, large rules-based system.
+
+And these systems actually cropped up in several different areas.
+
+Stanford University produced two of the most important expert systems, one known as MYCIN, which was an infection diagnosis system, and then Dendral, which was a chemical assistant for finding molecular structures.
+
+Now, originally, there was a lot of excitement around expert systems, but the problem is that these expert systems were brittle and hard to maintain.
+
+Additionally, when a new scientific discovery was made, say in the field of infection diagnosis, you had to retrain the entire system.
+
+There was no slight update or upgrade.
+
+You had to throw out the current rules-based systems.
+
+Now, unfortunately, this led to several high-profile failures, including Japan's Fifth Generation Computer Systems, which the Japanese government had staked a lot of its success and credibility on, that ultimately did not succeed.
+
+And as a result, this led to a pretty deep AI winter that took off in the beginning of the 1990s.
+
+Now, from the 1990s to the early 2000s was dominated by the existence of small datasets and what we'll call canonical frequentist statistics.
+
+Think A/B tests and the like.
+
+If you've ever heard the saying, statisticians are the original data scientists, this ethos was absolutely true in the '90s and early 2000s.
+
+That's when statisticians truly were leading the way in the field of intelligence.
+
+But things started to change.
+
+In the year 2005, Hadoop was created.
+
+Hadoop was one of the first tool sets equipped to handle massive amounts of data, and in turn launched what we now call the big data era.
+
+This was followed a year later by the launch of the first cloud platform provider, AWS or Amazon Web Services.
+
+Google and Microsoft Azure quickly followed, and as a result.
+
+Now, the creation of cloud compute and tools that could handle massive amounts of data set the stage for companies to start collecting massive amounts of information and synthesizing it.
+
+As we'll see, this is ultimately going to set the stage for a deep-learning revolution.
+
+It also led to the rise of data science.
+
+Perhaps you've heard the phrase "Data Scientist:
+
+The Sexiest Job of the 21st Century." Starting in about the year 2012 when DJ Patil coined the term data scientist, companies started to realize that if they were collecting all of this data, it probably made sense to analyze the data to find insights.
+
+You don't wanna simply collect data for data's sake, but there might be insights in there that you might want to mine.
+
+Now, the next major breakthrough happened only a few years later.
+
+In the year 2012, a deep learning architecture known as AlexNet was created by the two gentlemen you see in front of you.
+
+On the left you have Geoffrey Hinton, a professor of computer science who many consider the godfather of artificial intelligence.
+
+I, however, consider him the godfather of deep learning.
+
+Turing is the original, in my opinion, but that's neither here nor there.
+
+On the right we have his graduate student, Alex Krizhevsky.
+
+They designed a deep learning model to compete in a very famous competition known as ImageNet.
+
+For years throughout the early 2000s and 2010s, ImageNet was where the best algorithms of all shapes and sizes competed to see which was most successful at various image classification tasks.
+
+Now, AlexNet won the 2012 ImageNet competition, but it didn't just win; it blew all of the other results out of the water and received amazing levels of accuracy that previously had been thought impossible.
+
+So all of a sudden, there becomes a renewed interest in deep learning as the broader community sees how effective AlexNet was at classifying images.
+
+Then what followed was a rapid resurgence of interest in deep learning.
+
+AlexNet wins the ImageNet competition in 2012, and less than two years later in 2014, all computer vision is essentially being done by neural networks.
+
+That is how rapid the adoption took place.
+
+In 2016, Google creates a neural network called AlphaGo that is able to beat the reigning world champion in a game called Go.
+
+Now, if you think chess is complex, Go is exponentially more complex.
+
+This is a game that many people thought humans would always be able to outperform machines on, but AlphaGo proved them wrong.
+
+In 2017, you have the introduction of what will be, I believe, the most fundamental advancement in the history of deep learning:
+
+the creation of transformers and the transformer architecture.
+
+This led to many new deep learning models with impressive capabilities such as BERT.
+
+It formed the foundation for GPT-3, which many of you may know as the original generative AI model.
+
+In 2021, we actually had the first publicly available, I would say, generative AI applications in the image creator DALL-E and GitHub Copilot.
+
+Lastly, in 2022, we see the launch of ChatGPT, and well, frankly, the rest is history.
+
+Thank you for watching this presentation.
