@@ -1,0 +1,387 @@
+Presentation 3.2: The Simplex Algorithm
+AudioLinks to an external site. (28:49)
+Summary
+Optimization scales exponentially; brute force is impractical.
+Simplex algorithm efficiently finds optimal vertices.
+Uses slack variables to convert inequalities to equalities.
+Iteratively pivots variables to improve the objective.
+Foundation for advanced optimization and heuristics.
+Transcript
+Welcome to AAI-501 Module 3, The Simplex Algorithm.
+
+We ended last lecture discussing the fundamental scaling problem that happens in mathematical optimization.
+
+If you take a very simple problem, say 10 variables and 10 constraints to solve in a mathematical optimization format, this will generate about 185,000 points of interest, or vertices, that we need to search in order to find the maximally beneficial outcome.
+
+Now, that doesn't seem too bad, but if we scale up to what is arguably still a very small mathematical optimization problem where we only have 500 variables and 500 constraints, this is going to generate 10 to the power of 299 points of interest we have to search.
+
+And given that there are only 10 to the power of 88 atoms in the entire universe, you can see how this very quickly becomes a problem that we simply can't brute force.
+
+So the question we need to ask ourselves is, is there a way that we can search over all of these vertices to find that optimal solution more effectively?
+
+And the answer is yes.
+
+Several decades ago, a man named George Dantzig developed the simplex algorithm, which is seen as the fundamental algorithm within mathematical optimization, and it greatly speeds up this entire search process to the point where mathematical optimization is feasible.
+
+Now that said, part of the reason why mathematical optimization is so underutilized and under-taught is when George Dantzig created the simplex algorithm, he did not make the terminology easy to follow at all.
+
+There are five basic steps to the simplex, but the longer that you stare at this write up, the more it hurts your head.
+
+You gotta transform the original problem into the standard form. What's that?
+
+Then you need to express the problem in the canonical form with respect to the basic feasible solution.
+
+All right, that's a lot more words we don't understand.
+
+What's a non-basic variable when we move to step three? What is a reduced cost? What is entering the basis? Heck, what is pivoting to determine the new basic solution?
+
+At the end of the day, for many people, this ends up being a deal breaker for understanding simplex.
+
+But what we are going to do today is present it in a slightly easier to understand way so that at the end of this lecture you can walk through these five easy steps and understand just what George Dantzig was trying to say all those years ago.
+
+The first thing that we have to do when we want to apply the simplex algorithm to a problem is get rid of the inequalities.
+
+To illustrate the simplex algorithm, we are going to use the factory example from last lecture.
+
+Now, there are two inequalities in our problem setup, right?
+
+We know that the total number of chairs, x1, and the total number of tables, x2, are constrained by both the amount of wood and the amount of labor hours, where we have 400 units of mahogany and 450 units of labor hours.
+
+So how do we get rid of the inequalities? Simple.
+
+We're just going to introduce new variables, h1 and h2.
+
+These are called slack variables, and let's think about how they worked.
+
+Let's say that 5 x1 plus 20 x2 was 380, right? However many chairs and tables we were building only needed 380 units of mahogany.
+
+In that case, we could simply set h1 equal to 20, and the sum total, 380 plus 20, would equal 400.
+
+Similarly, let's say our solution had 10 x1 plus 15 x2 equal 400. So the amount of tables and chairs we were going to build only needed 400 labor hours.
+
+In that case, h2 would equal 50. 400 plus 50 equals 450.
+
+And the beauty of simply introducing these slack variables, which just captured the amount of surplus we have available in our constraints, is that if we choose the right numbers, then they're always going to turn this inequality into the equality because they soak up, they add that additional little bit to make this an equality statement.
+
+When we talk about converting to standard form, this is all we mean.
+
+We simply mean we are going to introduce these slack variables so that we now have equations to deal with that's easier than inequalities.
+
+So right there, converting to standard form simply means take your inequality, add two new variables, or however many you need to, and convert it into an equality.
+
+Let's also take a step back and think about the fundamental theorem of linear programming.
+
+We claimed last lecture that if a linear programming problem has an optimal solution, then at least one of those optimal solutions has to exist on the corner point or vertex of what we had defined as the feasible zone, right?
+
+This polyhedron is all possible combinations of chair and table manufacturing numbers that we could feasibly perform.
+
+So if you look at these vertices, something very interesting pops out.
+
+Let's come down here to the origin. In this case, we know that x1 and x2, the amount of chairs and the amount of tables we're building, are both zero.
+
+h1 and h2, remember, those are the slack variables. That's how much mahogany or many labor hours do we have left over. Those are non-zero, right?
+
+So in this case, we have two variables that are zero and two variables that are non-zero.
+
+Now, let's search another vertex.
+
+In this case, x1, the number of chairs, is equal to zero, but x2 isn't.
+
+Now, here's something that's interesting.
+
+Because this vertex exists along the boundary line that defines us using up all of the mahogany, our slack variable h1 is zero.
+
+Said another way, when we're at this vertex h1 equals zero, because guess what? When we make 20 tables, we use up all the mahogany.
+
+So what that means is that at this point we again have two variables that equals zero, x1 and h1, and two variables, x2 and h2, that are non-zero.
+
+Remember, h2 tells us how much labor we have left over. It is the slack variable for labor.
+
+And you'll notice at this point, we still have a lot more labor that we could potentially use.
+
+And I put it to you that if you search the other two variables, or the other two vertices, excuse me, and expand this out to however many dimensions you want, you're going to see the exact same observation.
+
+And that observation is that every vertex will have a combination of some variables that are zero and some variables that are non-zero.
+
+And in fact, the ratio of variables that are zero to the number that are non-zero stays constant.
+
+So really, what we have to do is use this to our advantage and try to figure out the right combination of which variables should be zero, which variables should be non-zero, and then that in turn will encode which vertex is in fact the optimal answer, right?
+
+Because down here, again, x1 and x2 are the zero variables, h1 and h2 are the non-zero variables, right?
+
+You could encode that as a vector saying that x1 x2 is 0, 0, h1, h2 is 1, 1.
+
+You check another vertex. Up here, x1 is zero, x2 is non-zero, h1 is zero, and h2 is non-zero.
+
+So think of this like the encoding vector 0,1,0,1.
+
+And all that the simplex algorithm is doing at the end of the day is trying to find the right combination of variables that should be zero and the variables that should not be zero in the optimal solution.
+
+Now, if you find that combination of variables, kinda like the vectors we were talking about in the previous slide, then all of a sudden you can use that to map which vertex has that specific combination of variables that are zero and non-zero.
+
+And as a result, you will have found the vertex that has the optimal solution.
+
+So again, think back to our last slide. We started off and we said x1 and x2 will be zero and h1 and h2 will be non-zero.
+
+Now, what the simplex algorithm does is it says, okay, that's a good start, but how can I make it better?
+
+The first thing it asks is what variable that is currently set to zero do I wanna set to non-zero?
+
+The term for this is what variable comes into the basis and becomes a basic variable.
+
+And on the previous slide we said that that was x2. Great.
+
+Now, we know that for every variable that comes into the basis, that is becomes non-zero, a variable has to come out of the basis, which is another way of saying going from non-zero to zero, and becomes a non-basic variable.
+
+This is what happened to h1, right? We used up all of the mahogany and h1 went to zero, so that was our swap.
+
+So, simplex will in fact repeat this process until we maximize the objective function.
+
+And you may be asking ourselves, "How does simplex intelligently do this?"
+
+We can't simply randomly pull which variable comes into the basis and which variable comes out, right?
+
+The number of combinations gets too vast.
+
+We are going to use two specific approaches.
+
+So to figure out which variable comes into the basis, again, goes from being a zero variable to a non-zero variable, we're gonna use something called the largest reduced cost.
+
+To determine which variable comes out of the basis, goes from non-zero to zero, well, we're gonna use something called the minimum ratio test, and we will repeat until we maximize the objective function, and I'll show you how that happens in the example ahead.
+
+So let's go back to the factory problem.
+
+Now, we have four vertices that we could choose as our starting point.
+
+In simplex, what you do is you pick something easy, like the origin.
+
+X1 and x2 are equal to zero.
+
+So what that means then is if you plug in x1 equals 0 and x2 equals 0, h1 is 400, and h2 is 450, right?
+
+So this is a technically feasible solution.
+
+It exists in our polyhedron.
+
+That doesn't mean it's a good solution, but it's a solution.
+
+Another way that we would say this is it's not only a feasible solution, but a basic feasible solution.
+
+Now that simply means this solution has both basic and non-basic variables.
+
+AKA some variables are zero and some are non-zero.
+
+Again, George Dantzig was not good at terminology, but understand this concept of a basic feasible solution.
+
+Doesn't have to be a good starting point, but it's something.
+
+The next thing we do is we convert to canonical form.
+
+Remember that we have some variables that are zero and some that are non-zero at every vertex, and all that converting to canonical form means is you want to write your equations, those variables that are basic, that you allow to be non-zero, as functions of the non-basic variables.
+
+Again, everything that you're seeing here on the slide, these are the equations that framed our problem, right?
+
+And in fact, if we say h1 and h2 are going to be those basic variables, then we can simply write our equations as h1 is 400 units of mahogany minus 5 units for every chair we build, minus 20 units for every table we build.
+
+h2, it's 450 labor hours minus 10 for every chair, minus 15 for every table.
+
+And then up here, what we've done is we've simply updated the revenue variable to say, hey, we get $45 for every chair, $80 for every table, doesn't actually do us any good to have any leftover mahogany or labor hours.
+
+We're gonna say we don't get any value for that.
+
+So again, this seems very trite, but this is what converting to canonical form means.
+
+Left-hand side of the equation, we have our basic variables, h1, h2.
+
+Right side of the equation, non-basic variables x1 and x2.
+
+Now that we have done that, the next step is we wanna check and say, hey, which of these non-basic variables are gonna increase revenue the fastest, right?
+
+So let's go back to our revenue statement.
+
+Now, we have revenue as 45 times x1 plus 80 times x2 plus 0 times h1 plus 0 times h2.
+
+Now, the non-basic variables are the ones that are currently set to 0, x1 and x2.
+
+Look at their coefficients and then take a step back.
+
+What we're asking here is, okay, if we started to make chairs, or we started to make tables, which would increase revenue with the fastest?
+
+And the answer is, well, $80 per table is going to be more than $45 per chair, we're probably gonna want to build tables.
+
+This is another way of saying we just found the non-basic variable with the largest reduced costs, and as a result, x2 is going to enter the basis.
+
+Now think about it also this way.
+
+We've learned about greedy solutions back when we talked about search, so really what we're doing is we're taking a greedy approach.
+
+We're saying that we wanna pursue the variable that has the biggest slope or increase in our objective function, AKA our revenue function, right?
+
+So that's all that we're saying we're gonna do.
+
+So that's the first part. We figured out which variable to bring in.
+
+Now we need to figure out which variable is that is non-zero do we need to get rid of?
+
+And we have two options.
+
+We have h1 and we have h2.
+
+So, what are we gonna do here?
+
+Well, let's take a step back and think of it like this.
+
+Let's gonna make take tables.
+
+How many tables do we need to make to use up all of our mahogany?
+
+How many tables do we need to make to use up all of our labor hours?
+
+And here's what we would do.
+
+We would say we have a total of 400 units of mahogany and 20 units of mahogany is needed for each table.
+
+We have 450 labor hours, and 15 labor hours are needed for each table.
+
+If we do the basic math, we could see that using up all of the mahogany, we could create 20 tables.
+
+Using up all of the labor hours we could make 30 tables, but we can't actually make 30 tables and truly use up all of the labor hours because we wouldn't have enough mahogany to do that, right?
+
+The mahogany is the first constraint that we run into, and this in turn is the minimum ratio test we were telling you about.
+
+So what it says is that when you are considering which of your basic variables you wanna bring out, take the ratio of the intercept term divided by the ratio of, or excuse me, the coefficient of the variable you're bringing into the basis, that's x2.
+
+And what you'll see is that whichever of these two ratios is lower, or is the minimum, that then tells you which of these basic variables needs to be converted to non-basic.
+
+And in this case, it is h1 that has to leave the basis because the minimum ratio test says that the ratio, well, is lower.
+
+Now at this point, we've gone through one round. We've done one round of bringing a variable in and taking another variable out.
+
+Again, what we're trying to do is we're trying to figure out the right encoding, so to speak, for each of those vertices, 'cause each, each vertex, excuse me, has a specific encoding for which variables are zero and non-zero at that vertex.
+
+And again, all we're trying to do is we're trying to iterate until we figure out the best combination of variables that are zero and the variables that are non-zero.
+
+Every time you do a round of this, one comes in, one goes out, that's called pivoting.
+
+Now, let's rewrite our equations with the new basic variables.
+
+Again, what we need to do is we need to convert to canonical form.
+
+We, instead of having h1 and h2 be non-zero, we said that now x2 is going to be non-zero, and h1 is going to leave the basis.
+
+So, what we'll do is we are going to rewrite this equation where we described h1 in terms of x2, and do vice versa.
+
+So I then put it to you that this math is correct, and if you take this equation right here and plug it into both the revenue and into our equation for h2, you're gonna get the following.
+
+Revenue equals 1,600 plus 25 x1 plus 0 x2 minus 4 h1 plus 0 h2, so on and so forth.
+
+Again, all we're doing right now is we're doing basic mathematics to convert to canonical form.
+
+Again, our non-basic variables, or excuse me, our basic variables need to become written in terms of our non-basic variables.
+
+So let's take a step back and review where we're at.
+
+We started off with h1 and h2 being non-zero and x1 and x2 being zero. That put us right here at this vertex.
+
+We then went through a round of the simplex algorithm where we said x2 will come into the basis, so it will be non-zero, and h1, again, the amount of mahogany we have left over, leaves the basis, it becomes zero.
+
+What that did, that first round of the simplex algorithm, it simply said, go from the origin to the vertex where now x2 is non-zero, but h1 is zero.
+
+And again, we've written out each of the equations that we've walked through thus far in our approach, and now we're simply gonna do this all over again.
+
+We're going to go back and say of our non-basic variables, which now is x1 and h1, which one increases revenue the fastest, AKA has the largest reduced cost?
+
+Well, x1's coefficient, that is x1's reduced cost, is 25.
+
+Similarly, h1's reduced cost, or coefficient, is negative four.
+
+Pretty obvious to see that x1 has the ability to increase revenue the fastest.
+
+Now we need to figure out which of our basic variables, x2 or h2, do we need to drop, or get rid of, so that x1 can come into the basis.
+
+We will simply apply the minimum ratio test again.
+
+So for x2, the intercept is 20, and the slope of x1 in this equation is 1/4. 20 divided by 1/4 equals 80.
+
+For h2, the intercept is 150, the slope is 25/4, so the ratio is 24.
+
+Now you can see how at this step, this iteration of the simplex algorithm, the intuition starts to break down.
+
+Instead of us saying, hey, how many chairs can we make to use up all of the mahogany or all of the labor hours, well, what does it mean to have x2 be consumed by x1?
+
+So again, trust the process. That's why it's important to follow the steps in the simplex algorithm.
+
+So, according to the minimum ratio test, we would actually bring h2 out of the basis and replace it with x1 because it's ratio is lower.
+
+If we take another step back and look at the quick review, this round of the simplex algorithm after pivoting has taken us from x2 and h2 being the variables in the basis to now saying x1 and x2 are the variables in the basis.
+
+And oh, by the way, if you look at which vertex that is, it's ultimately going to be right here where we have a certain combination of tables and chairs that we worked out in the previous lecture, and I put it to you that if we go through the same math that we did and convert our previous canonical forms and write up what x2 and x1 are, our new basic variables in terms of non-basic, this is the outcome that you'll get after all that math.
+
+What you'll see now if you look at our objective function is that it's 2,200 plus 0 x1 plus 0 x2 minus h1 minus 4 h2.
+
+Now, notice something. The next round of simplex would say, hey, let's actually take a look at the variables that are currently non-basic and see what happens if we try to improve them.
+
+But both of these coefficients are negative.
+
+Remember, we said that to bring a variable into the basis, it has to have a positive coefficient.
+
+Once you get to a spot where your non-basic variables are all negative, you've arrived.
+
+You've figured out what the maximum of your objective function is, and it turns out here it's 2,200.
+
+So with that, we have actually solved the entirety of the factory problem using two rounds of simplex.
+
+So to quickly review, what we did was we converted to standard form, we got rid of the inequalities, and we started somewhere by introducing these slack variables and saying, let's begin at the origin.
+
+We then converted our equations, right? The equations we use to define our constrained problem into canonical form.
+
+That means on the left-hand side we have our basic variables, and the right-hand side we have non-basic.
+
+We then found the largest reduced cost, right? We looked at coefficients to say what variable comes in when we look at the objective function equation.
+
+To determine what variable came out, we applied the minimum ratio test and said, well, based off of our equations where we have rewritten both the left hand and the right hand side in terms of basic and non-basic variables, we found the lowest ratio, and that determined which variable came out.
+
+We went over that again and again and again until we hit a spot where the reduced costs of all the non-basic variables, again, the coefficients in our objective function, were negative, and that gave us our final answer.
+
+So hopefully now you can see that we just walked through what I am hoping is a much easier to understand approach to the simplex algorithm.
+
+And at the end of the day, if you understand what we just walked through over the last little while and think about it a bit, you can easily translate this admittedly convoluted statement of the simplex algorithm that George Dantzig first proposed.
+
+But why are we focusing so much on the simplex algorithm?
+
+Why is it such a big deal?
+
+Well, to answer that question, I'll remind you of the concept of informed search.
+
+In informed search, what we do is we use search, but we apply knowledge that we have about the goal.
+
+We talked of our example of trying to find the best route from the San Diego Farmer's Market down to the San Diego Civic Theater.
+
+If the downtown area of San Diego is on a grid, we can encode our rough knowledge as a heuristic, estimate of the remaining cost from the current state, the location of the farmer's market, to the goal, the location of the San Diego Civic Theater.
+
+The way that you do informed search is you have to have an admissible heuristic where the heuristic value, the distance as the crow flies, the remaining cost, is less than or equal to the actual cost.
+
+And we said that oftentimes to figure out an admissible heuristic, you solve a simpler version of your problem.
+
+And it turns out that the simplex algorithm, by solving linear programming questions, becomes that heuristic for many other methods.
+
+So for instance, if you think of a mixed integer programming problem where you have to determine the number of plants and the number of distribution centers for your logistics organization, a simpler form of that problem is relaxing the integer constraint and saying, well, maybe I can build 3 1/2 distribution centers, or 2 3/4 delivery centers, and that relaxed version becomes a linear programming problem, which then can be a heuristic.
+
+So you can see how simplex, that method, is how we calculate heuristics for more advanced search methods such as mixed integer programming.
+
+There are other ways that simplex comes through to really become that cornerstone for mathematical optimization.
+
+So column generation, it's a trick that we apply to solve huge linear programs with a large number of variables, but you only need a couple of them, think sparse matrix, to solve the solution.
+
+Or decomposition methods.
+
+That's a way that you can solve huge optimization problems by breaking them down into smaller and more manageable chunks.
+
+Both of those approaches leverage the foundations of the simplex algorithm.
+
+And when you get into more advanced components of mathematical optimization, such as sensitivity analysis, simplex is going to come up again.
+
+So the reason that we spend so much time on simplex is that it truly is the gateway to understanding mathematical optimization as a field.
+
+Thank you for watching this presentation.
+

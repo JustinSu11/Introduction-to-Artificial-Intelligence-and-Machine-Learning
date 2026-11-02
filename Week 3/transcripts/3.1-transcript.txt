@@ -1,0 +1,173 @@
+Presentation 3.1: Mathematical Optimization
+AudioLinks to an external site. (22:39)
+Summary
+Optimization with constraints: agents optimize decisions under real-world limits like resources and capacities.
+Three optimization types: linear programming (continuous variables), mixed-integer programming (discrete variables), quadratic programming (non-linear relationships).
+Factory problem example: models production of tables and chairs with resource and labor constraints.
+Feasible region & revenue line: solutions lie within constraints; optimal revenue found at vertex points.
+Simplex algorithm: efficient method to solve large-scale linear programs by exploring feasible vertices.
+Transcript
+Welcome to AAI-501 module three, mathematical optimization.
+
+In the previous module, we talked about how agents make decisions under a fairly easy view of the world. We talked about search strategies for when the world was completely observable, decisions were deterministic. But how do agents make decisions when things get a little bit more complicated?
+
+This week, we're going to talk about how agents optimize or make the best possible decision in situations where there are constraints. What do I mean by situations with constraints?
+
+Think of a manufacturing facility. No manufacturing facility has an infinite number of worker hours or an infinite number of materials. A facility needs to decide how many of each product to make to maximize revenue, subject to some constraints such as 100,000 person hours in a given year, and only so much fabric or textiles or whatever the manufacturing inputs might be.
+
+Another great example that comes up quite often in the retail world is known as SKU rationalization. Think of SKU rationalization as understanding, what products should I put on the shelf in order to, again, maximize revenue? In this case, I will be constrained by the amount of shelf space that I have available, and I need to decide not only what to put where, but on what shelf. Do I put the macaroni and cheese right at eye level? Do I put it on the bottom shelf?
+
+Lastly, another example of optimizing with constraints is trying to balance a power grid. We know that houses and facilities and manufacturing places will have power needs, but there's only so much power to go around. Additionally, we need to make sure that this power is distributed evenly throughout a grid. So in this instance, how exactly do we optimize what power to go where subject to the physical limitations, the maximal capacity that our power grid has in different areas?
+
+This is in fact a topic with many real-world problems. In fact, I would go so far as to say that mathematical optimization, the ability to optimize real-world problems that have real-world constraints is the most under-taught subject in all of artificial intelligence or data science. I've seen this at every single company I've worked at, and this makes sense because as much as we like to build models and algorithms that have free reign, unconstrained views of the world, businesses come with constraints. And it's important that our agents are able to model them.
+
+The way that we solve these types of constrained problems is using a technique known as mathematical optimization, sometimes called mathematical programming. In mathematical optimization, what we do is we take our problem, the constraints, the optimization, and we express it as a series of inequalities and equations.
+
+There are three primary flavors of mathematical optimization. The first is called linear programming, where when we set up these equations, we only use continuous variables. So let's use an example. Let's say, for instance, that we are an oil refinery, and we can make two different types of products, X1 and X2, and we need to figure out how many gallons of each we want to produce in order to maximize profit. Now, X1 and X2 are constrained by a total of 400 person hours. That's how much person power we have in our refinery. It takes 5 person hours to create 1 gallon of X1 and 20 gallons of X2. So in this case, we have the expression 5X1 plus 20X2 needs to be less than or equal to 400. It's also worth calling out that both X1 and X2 have to be greater than or equal to 0, because you can't have negative gallons of a refinery product.
+
+The second type of mathematical optimization is mixed-integer programming, or MIP. In MIP, we now say that our variables don't have to be continuous. They can be integer values, or even Boolean to start introducing logic. As an example, let's say that we are a retailer and we are attempting to decide whether or not we want to build new stores or new distribution centers. So we know that a store X1 and a distribution center X2, we can only build a total of five of them because we're constrained by some amount of labor or financial capital. In this case, it wouldn't make sense to say that we can build 3.5 stores or 2.75 distribution centers. So even though X1 plus X2 has to be less than or equal to 5, it needs to be an integer number for both of our variables. And, again, X1 and X2 have to be greater than 0.
+
+The third type of mathematical optimization is quadratic programming, or QP. This is when we start to introduce non-linear variables into our constraint equations. A real-world example of this is spending marketing dollars, buying advertisements on Facebook or Pinterest or Snapchat. Ad effectiveness actually diminishes as your spend increases. So if you had a constraint equation or an optimization equation, let's say, where you wanted to maximize the amount of ad impact, your ad spend variable only increase as a square root. Or for another real-world example, you might be wanting to model stock portfolio performance. And in that case, the amount of a stock owned might increase faster than linearly if you factor in components such as dividends, compound investments, and the likes. You can even mix your variables together. So if you're trying to optimize a problem with variable X1 and X2, you can even have terms of X1 times X2, once again as a function of a constraint. So linear programming, mixed-integer programming, and quadratic programming are the three dominant flavors of mathematical optimization.
+
+Now, let's make this example a little bit more real. We'll bring back our 501 bot and walk through a real-world example known as the factory problem.
+
+So let's say that our 501 bot is responsible for running a factory that can make two things: tables and chairs. These tables and chairs, for our intents, only consist of two input variables. The amount of wood, and let's say we're gonna use mahogany for this example. And the amount of person hours it takes to build each of these items. And both the chair and the table have different prices. Let's say a chair is $45, a table is $80, but we're also limited by the amount of mahogany we have, let's say 400 units, and the amount of person hours that we have, let's say that's 450 hours.
+
+So to summarize this, we can use the following chart. A chair takes 5 units of mahogany, 10 person hours of labor, and we can sell it for $45. A table takes 20 units of mahogany, 15 hours of person labor, and we can sell for $80. Additionally, we have a weekly capacity of 400 units of mahogany, that's all we can get, and 450 labor hours.
+
+What production plan, what combination of chairs and tables should we make to maximize the total revenue?
+
+The first step in solving this problem is to turn it into a series of equations. Let's start by talking about revenue, perhaps the most important point.
+
+Now, our total revenue that we get in a given week is $45 times the number of chairs made, 45 times X1, plus $80 times the number of tables made, X2. So X1 is gonna be chairs, X2 is tables.
+
+Now we are subject to constraints, the amount of mahogany we have available and the number of person hours. Now we have a total of 400 units of mahogany. And every chair that we make takes 5 units of mahogany. Every table we make has 20 units. So the constraint here is that 5 times the number of chairs plus 20 times the number of tables has to be less than 400. We don't have any more wood than that.
+
+We need to do the same thing with labor hours. We have a total of 450 hours. Each chair takes 10 hours to make, and each table takes 15 hours to make. So 10 times the number of chairs plus 15 times the number of tables, 10X1 plus 15X2 needs to be less than 450.
+
+Lastly, and this might seem trivial, but is actually very important. We know that the number of tables and number of chairs that we have to make needs to be greater than or equal to 0. You can't make negative chairs or negative tables.
+
+Let's also bring some terminology into this problem. Keep in mind that we have two resources, mahogany and labor. We have two products, two things we're trying to build. We have chairs and we have tables.
+
+We also are gonna be introducing parameters. So the parameters we have in this problem is the price of the product, the resource capacity, how much of a given thing do we have, and then a funny term called technology coefficients. You can simply think of this as, how much of each of the resources do we need to make one of our products? The parameters usually don't change in this problem. We're not really trying to optimize them. We treat them as fixed.
+
+Next, we have decision variables. Think of these as the variables we have to optimize. We have X1, the number of chairs to make, and X2, the number of tables to make.
+
+Now these decision variables are going to be subject to constraints, and we have two constraints in the system. We have the amount of mahogany that's available to us per week and the amount of labor available per week. And perhaps most importantly, we have our objective function. What are we trying to maximize by figuring out the right combination of decision variables? In this case, it's going to be maximizing the total weekly revenue.
+
+It turns out that we can take all of these constraints and put them onto a graph. So let's talk about what we've got here. Along the X1 axis, we have the number of chairs, and along the X2 axis, we have the number of tables.
+
+And let's talk about the lines that we have here. Well, what we can do is we can subsect this entire graph into what's known as a feasible region. How many chairs or tables can we actually produce simply by plotting our constraints, right?
+
+So we said we had a constraint of 450 labor hours. We can plot that equation, 10X1 plus 15X2 equals 450 along our graph. And what this says is that subject to no other constraints, we could make a total of 30 tables or 45 chairs if all we considered in the world was labor.
+
+We can make the exact same plot, the exact same line by looking at our constraint on mahogany. Thinking back to the equation we just plotted, 5X1 plus 20 X2 equals 400, gives us the analogous line for the wood. So we can plot this line as well.
+
+And if we just consider this intersect, if the amount of mahogany was all we cared about, we could say, "All right, we could make up to 20 tables or we could make 80 chairs."
+
+Now, it's important to call out that each of these limitations needs to be considered. So for instance, it would never be possible for us to actually make 30 tables because we don't actually have enough mahogany, right? If X2 was 30, well, then that would mean that we would need 30 times 20 or 600 units of mahogany, which we don't have.
+
+So what you can think about this polyhedron as is the feasible region, AKA, what are the choices we have for our decision variables that we can actually accomplish?
+
+Now that we've set up our problem, how exactly do we figure out the right combination of tables and chairs, or put another way, the right point to select in this green feasible region, that maximizes revenue?
+
+To do this, we're going to introduce a concept I call the revenue line. And what we're gonna do is we're gonna think back on our total revenue equation where we said the total amount of revenue we get in a given week will be $45 times the number of chairs we make, plus $80 times the number of tables we make.
+
+What we can do is that if we set this revenue equal to a certain amount of dollars, like say $0, that then gives us a line that we can plot over this graph.
+
+Now, what does this line mean? This line means that for any point that sits along the line, that combination of table and chairs will return the same amount of revenue.
+
+Now, a revenue of 0 is a trivial example in the sense that the only real option we have is for X1 and X2 to both be 0. We don't make any tables or chairs.
+
+But let's say for a second that we actually could produce a negative amount of chairs or tables. Perhaps we buy them instead of sell them.
+
+In this world, if we made 80 chairs but then sold negative 45 tables, that would also give us a revenue of 0, and that point would sit along this line.
+
+Now, the slope of this line will never change because the slope is simply the ratio of the two prices of chairs and tables.
+
+But what does change is that we don't wanna set this revenue equal to 0. We wanna set it to a higher number.
+
+We essentially wanna say, how much can we move this line in this direction highlighted by the green arrow and still have it intersect a point on the feasible region?
+
+So let's talk about what that means.
+
+What we can do is we can shift the line forward even more. So now what we're gonna do is we're gonna say instead of X1 and X2 being 0, we're gonna move it up into the right until we intersect the point X1 equals 0 and X2 equals 20.
+
+Now, this line is no longer revenue equals 0, but it's revenue equals $1,600.
+
+So this line is 1600 equals 45X1 plus 80X2, which means that if you chose a combination of tables and chairs anywhere on this line, it would give you $1,600.
+
+Now, if you look at this, we can probably shift this line farther up into the right than we have today. What we'd have to do is move it in this direction. We gotta build some more chairs, so let's do that.
+
+If you push that line as far up into the right as possible, you're actually going to hit this specific corner right here.
+
+At this point where you're making 24 chairs and 14 tables, your revenue is $2,200.
+
+So, again, all we did was we took that revenue line, and we pushed it as far as possible until it could go no farther without intersecting at least one point in our feasible region.
+
+For those of you aware of the concept of gradient descent, this is actually very similar. Where this line we've been following, this gradient up into the right, shows us how far we can move to maximize revenue.
+
+Now, this then leads us to what is known as the fundamental theorem of linear programming.
+
+The problem we've been solving is in fact a linear programming problem.
+
+Now, yes, we've relaxed it a little bit because technically you make 1.5 half tables or 2.5 chairs, but for the sake of argument, we're still going to solve this problem as if it was linear.
+
+Now, the fundamental theorem is that if a linear problem has an optimal solution, that means there is only one point in this polyhedron, right, of the feasible region.
+
+Then what that means is that at least one of those optimal solutions has to be a corner point.
+
+By a corner point, we mean one of the vertexes or vertices on this polyhedron.
+
+So we have a total of four vertices for our current problem, right? 0, 0 where we have X1 and X2 both equal to 0. We have 0, 20, right, where we're making no chairs, but all tables. We have 45, 0 where we are just making chairs and no tables. And then we have our optimal, which is a combination of tables and chairs.
+
+Now, if you bring in the concept that we just talked about regarding the revenue line, this actually makes sense.
+
+Recall that our goal was to take this revenue line and push it as far as possible while still intersecting a point on this polyhedron.
+
+Well, we pushed it all the way to just making tables, but that wasn't far enough.
+
+You'll notice that if we keep pushing and pushing and pushing, the part of this polyhedron that sticks out the most, if you will, is in fact one of these vertices.
+
+Now, you might say, "Okay, Andrew, that's great, but isn't that just a special case, because we had a very specific price for chairs and tables?"
+
+The answer is actually no.
+
+Let's go ahead and work through an example where the slope is different.
+
+Remember, the slope of this line is simply the relative price, the revenue that we make per chair and per table.
+
+So instead, let's go ahead and say, "Well, it's worth a lot more to make a chair," right? If we say that the chair value is higher, we get more revenue, that's actually going to slope our revenue line farther to the right.
+
+So now this is our new revenue line.
+
+How exactly are we going to take it and push it while still maintaining this specific slope as far as possible in the polyhedron.
+
+What you're gonna see is that the farthest you can push it is to another one of the vertices. Again, the point that sticks out the farthest, the spot that still intersects our revenue line while maintaining a place within our feasibility region.
+
+So this actually seems pretty straightforward if you think about it.
+
+In order to solve a linear programming problem, we simply need to find the right vertex. And in this case, right, we only had four. That should be pretty easy.
+
+Here's the problem though.
+
+If we take a simple example, like let's say there's 10 total variables X1 through X10, and we have 10 constraint equations, well, that generates just under 185,000 vertices or points of interest that we have to search.
+
+Okay, well, that's a lot, but still possible if we just iterate over every combination.
+
+But in the real world, a problem with 500 variables and 500 constraints, that's actually a relatively small, mathematical optimization problem.
+
+And if you do the math, this means that you will have 10 to the power of 299 vertices or points of interest that you need to search.
+
+For comparison, there are only 10 to the power of 88 atoms in the entire universe.
+
+This very quickly becomes a problem that's intractable from brute force.
+
+So the question we now have to ask is, is there a way that we could search these vertices more effectively?
+
+And the answer is yes.
+
+A man named George Dantzig several decades ago came up with an algorithm known as the simplex algorithm that solves exactly this problem.
+
+And we'll learn about the basics of the simplex algorithm in our next lecture.
+

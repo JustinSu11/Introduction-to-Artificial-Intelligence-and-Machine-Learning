@@ -1,0 +1,27 @@
+Presentation 3.4: Lab - PuLP Package
+AudioLinks to an external site. (6:16)
+Summary
+Introduces the Module 3 lab session and sets up the problem to solve.
+Focuses on maximizing an objective function using linear programming.
+Walks through constraints and equations with simple examples.
+Demonstrates how to set up and run the solve function in PuLP.
+Shows output with print statements so you can see the results clearly.
+Transcript
+Welcome to the Module 3 lab session. Today we're going to walk through a simple example of how to use the Python package PuLP, which in my opinion is the most common package when it comes to solving mathematical optimization using Python. So let's go ahead and get started. Let's go ahead and install the package PuLP in our Google Colab environment. This might take us just a quick second, but you'll also notice that this does not come preloaded into Google Colab, so you'll need to make sure to import it before you get started.
+
+Now, once we've installed, let's go ahead and import the library. And what we're going to do is we are going to create an object of class LP Problem. So the idea here is, by creating this class, we're going to be able to start to create the mathematical optimization problem that we want to solve. And you'll also note that this is called pulp.LpMaximize. The problem we're going to solve today is maximizing our objective function. There are other options, such as if you wanted to say minimize your objective function, but for now, this is how we're going to configure our LP Problem object.
+
+Now, we are going to add two variables to this hypothetical example. We're going to have X and Y. Now, both of these, you'll notice that we are creating as LP variables and we're able to specify some details about them. First thing you'll notice is that X and Y are both considered continuous variables. We could, in fact, set cat to integer, but for now we have two continuous variables. We also have a lower bound. So you'll notice that in this case, what I'm saying is that X needs to be greater than or equal to zero, and Y needs to be greater than or equal to two.
+
+So let's go ahead and run that. Perfect. Now it's time for us to go ahead and start setting up our problem. The first thing we're going to do is add our objective function. And the function that we care about maximizing is the equation Z equals 4X plus 3Y. Now remember, we've already created an LP Problem object known as LP 501, and all we need to do is say LP 501 plus equals this equation. And so what we've done is we've passed in our objective function, and we do something very similar with the constraints.
+
+Let's say that I have three constraint equations that I need to consider. The first is 2Y needs to be less than or equal to 25 minus X. Well, I can once again run LP 501 plus equals my equation and it gets uploaded. Same thing is true for 4Y is greater than or equal to 2X minus 8, and Y is less than or equal to 2X minus 5. So you see how this class actually makes it very easy for us to update and add both the objective function and the constraints. So let's go ahead and do that now. Now let's go ahead and see what is in this LP 501 object.
+
+You'll notice that we have every single one of our parameters and equations inserted into this object. It has the specific objective function we wanna maximize. You can see the constraint equations, and we've specified our variables. So let's do one more thing. Let's just take a quick look at these variables, and you'll notice how this object has many different functions, such as variables, where we can directly access the data if we'd like. Now, because we have this LP 501 objective function and constraints and variables all wrapped up into this beautiful class, what we'll do is we'll simply run the solve function and PuLP will go ahead and solve our equations.
+
+Now, you'll notice that I've included another print statement here. So what I've done is I've said, "All right, I want to understand the status of the LP 501 object," and it returned optimal. Now, there are five possible status codes that your object could come back with. The first is not solved. We have a very straightforward example here, but mathematical optimization problems can be quite complex. So in this case, it could be the case that you haven't quite found the solution yet. For us, we've hit optimal.
+
+We have found the optimal solution. But we could have also encountered infeasible, which means there are no feasible solutions; unbounded, which means that if we end up maximizing the solution, it's going to go to infinity, and that's not what we want; or there's undefined, and in undefined, the answer is that the optimal solution might exist, but it may not have been found. But our good news here is that we have achieved an optimal solution. Now that we've done that, we want to know what the value of X and Y are that create this optimal condition.
+
+So we can go ahead and we can print both X and Y and see what their values are. In this case, the optimal outcome is for X and Y to be 14.5 and 5.25. So you can see that in this way, PuLP has enabled us to maximize our specific objective function relative to all of our different constraints, and you will be able to use this lab example as you go through and build your Module 3 homework.
+

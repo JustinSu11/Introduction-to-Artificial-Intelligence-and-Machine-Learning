@@ -1,0 +1,600 @@
+Presentation 3.3: Introduction to machine learning & supervised learning
+AudioLinks to an external site. (36:18)
+Summary
+Machine learning teaches computers to learn from data when rules are unknown.
+Three main types: supervised, unsupervised, and reinforcement learning.
+Supervised learning predicts known targets using labeled data (e.g., classification, regression).
+Key supervised models include linear regression and logistic regression.
+Performance metrics vary: MSE/MAE for regression; accuracy, precision, recall, F1, ROC for classification.
+Transcript
+Welcome to AAI-501 module three, machine learning and supervised learning.
+
+So far in the course, we have seen several powerful ways to develop real-world algorithms.
+
+Earlier on in this module, we talked about mathematical optimization, the ability to determine the optimal combination of goods, services, schedules so that you can achieve the highest possible outcome on a given target.
+
+This has applications in manufacturing, such as scheduling workers, has applications in retail, such as SKU rationalization, which is simply, what products do I want to put on my shelf space in the grocery store so that people will buy them?
+
+Even down to power grid balancing, making sure that we can optimize the distribution of power for those who need it.
+
+Earlier in this course, we also talked about problem-solving a search and the wide range of challenges that can be approached with informed or uninformed learning.
+
+This includes tasks such as route navigation or even optimizing communication frequencies over something such as GPS or the internet.
+
+But here's something very important to know about mathematical optimization and problem-solving a search.
+
+In both of these examples, we know how the world works or the rules that guide the outcomes.
+
+When we talked about problem-solving a search, we said that the universe was fully observable.
+
+Our actions were deterministic, and we knew what the outcomes would generate.
+
+Similarly, in mathematical optimization, we also have the rules of how the world operates.
+
+We know that five units of wood and two labor hours are going to make one table or three chairs, but that's not really how the world works in many cases.
+
+In many instances, you don't actually have the rules in understanding of how the world truly operates.
+
+What you have are observations or data points that come from how the world works, but are, in essence, the outcome of how the world works rather than those rules themselves.
+
+So what do we do if we only have the data and not those underlying rules?
+
+That's where machine learning comes into play.
+
+So first, what is machine learning?
+
+Usually when it's used in the field, it comes at from two different angles.
+
+The first is understanding machine learning to be a field within artificial intelligence that focuses on enabling an agent to improve its behavior based on experience.
+
+Oftentimes, this relates to embodied AI, artificial intelligence that exists out in the real physical world, such as robots navigating a maze or delivering items on a college campus.
+
+The second definition of machine learning is developing algorithms that learn patterns from data and make predictions without being explicitly programmed for every task.
+
+In this view, when folks talk about machine learning, they're referring to simply the algorithm itself, right?
+
+Perhaps I have a linear regression model that exists in a Jupyter notebook.
+
+So sometimes it's seen from the physical agent view, and sometimes it's seen from the algorithm view.
+
+So what we can say, however, is between these two definitions, machine learning is ultimately the science of teaching computers to learn from experience and to improve their performance on a task over time.
+
+In this definition, it works for both embodied physical agents and AI algorithms themselves.
+
+Now, there are three main flavors of machine learning that we will cover in this course.
+
+The first is supervised learning.
+
+In this flavor of machine learning, we are attempting to predict a target value from data that we have, right?
+
+In this case, there is a correct answer.
+
+This could be wanting to predict home sale prices or perhaps categorizing an image as containing a dog or a cat.
+
+In this case, your model, your algorithm can be graded.
+
+In contrast, in unsupervised learning, there is no right or wrong answer.
+
+You're simply finding patterns in the data.
+
+Now, one very canonical example is clustering, where you will have data points and you try to determine whether or not there are perhaps unique clusters, with the green cluster being further away from the blue and further away from the pink, and within clusters, maybe the data points are similar.
+
+Another example, perhaps the anti-pattern, so to speak, is anomaly detection.
+
+Can you find points that are unlike everything else you've seen?
+
+Again, what makes an anomaly? How different is different enough? That is an unsupervised question.
+
+And lastly, we have reinforcement learning.
+
+In this case, it's not about abstracting away all of the nuance of the real world and saying, "Well, we have a target answer, a yes/no, a right or wrong," but it's more complicated.
+
+We need to learn effective behavior from our environment.
+
+It can be very multifaceted.
+
+Examples of reinforcement learning include the robot dogs built by Boston Dynamics.
+
+Think about how they learned to walk.
+
+That's a very hard supervised learning question because there are so many elements that go into walking, many different degrees of control, physical forces, environmental forces, things of that nature.
+
+Another example is Google's AlphaGo.
+
+Now, you can't actually tell game-playing AI agent to win or not win, like you are doing a supervised problem, but it needs to learn from experience.
+
+It can say, we have a goal state of beating my opponent, but how you get there, well, we're gonna have to play several games, several dozens, several thousand or million games in order to truly learn the rules and strategy.
+
+And those rules and strategy would be impossible to code up as a supervised learning task, so we need to make this dynamic and more relevant to the real world.
+
+There are many different applications of all three of these flavors of machine learning.
+
+For supervised learning, we have in the retail space, perhaps customer outcomes.
+
+We want to be able to predict whether or not a customer who visits our website is likely to purchase something.
+
+Another example is medical diagnosis of a various disease, and a good example as well is going to be credit scoring, speech recognition, and then email spam detection.
+
+Is this message spam, or is it something important that I need to get through?
+
+We can label those outcomes.
+
+On the unsupervised side, we have anomaly detection, which we've already discussed; topic modeling, the extraction of topics and themes from documents is an unsupervised problem, as is customer segmentation.
+
+Your customers might behave in new and unexpected ways, but they oftentimes travel and work in groups, as it turns out.
+
+Gene expression analysis.
+
+In the biochemistry space, you often want to take an unsupervised approach to understand what genes express themselves in different environmental and physiological conditions.
+
+Image compression is another example of unsupervised learning.
+
+And lastly, in reinforcement learning, this is where we start to get into some of those more complex real-world scenarios.
+
+Self-driving cars, great example of reinforcement learning.
+
+Dynamic pricing. So think of your Uber or Lyft app.
+
+That is a reinforcement learning approach, as is personalized education, the placement of advertisements on the internet, and even non-player characters within a video game.
+
+We will discuss all three of these classes, all three of these flavors in the modules to come.
+
+For this week, however, we will be discussing supervised learning as an introduction.
+
+When you perform a supervised learning task, there are three main elements that you need.
+
+One is understanding the task itself.
+
+What do you want to do better or, perhaps, at all?
+
+This is actually a lot trickier than most people think.
+
+If you say, for instance, "I want to predict the price of a home for sale," well, do you want to predict the dollar amount?
+
+Are you perhaps okay predicting whether or not the house sells for above its list price or below?
+
+There are many different ways you could actually define the same task, so you need to be crisp on that when you have a supervised learning problem.
+
+You also need to understand the data.
+
+What information do you have?
+
+This is where tools like exploratory data analysis or even understanding what data you don't have and how that could limit your algorithm becomes very important.
+
+And lastly, you need to have a solid performance measure.
+
+How do you know you're getting better?
+
+And we'll talk about some of the ways that we can define these performance measures or loss functions in general for various algorithms.
+
+And again, supervised learning has two flavors: classification, where we're looking at categories.
+
+The image has a dog, the image has a cat, perhaps the image has both a dog and a cat.
+
+And then regression, working with numbers, home sale prices as a good example.
+
+So we have here basic examples of classification and regression.
+
+So on the left here, we have a standard classification problem where we have some examples of people coming to an internet message board.
+
+And in this case, we are trying to predict whether or not the user is going to read or skip the post in front of them.
+
+So perhaps the post author, whether the thread is new, the length of the post, where the person is coming and potentially reading from.
+
+And then over here, we have a regression example.
+
+There's some X variable that we're using to predict Y.
+
+You know, perhaps this is the square footage in, I don't know, thousands, and the Y is the dollar price in, I don't know, millions for the house you're looking at.
+
+In these instances, it's important to get our terminology correct.
+
+So input features.
+
+This is the data that you can supply to your model to say, okay, these features tell us something about our outcome or our target feature.
+
+So input feature tells us something about target feature.
+
+That target feature is what we want to predict.
+
+The yes, the no. Do they read? Do they skip? What is the dollar value?
+
+Then lastly, we also have the predictor.
+
+What we want our machine learning model to do is to take in new data points where we have the input features and predict an outcome.
+
+Now, the two examples that we'll quickly introduce for this lecture, you've already seen in AAI-500, but they're linear regression and logistic regression.
+
+Great foundational examples of supervised learning.
+
+Now, a couple of words on linear regression.
+
+One, though it might seem very basic, it is very important to have a solid understanding of linear regression because it turns out that linear regression is a very important jumping-off point for most of the newer approaches you're gonna see.
+
+As we will uncover in later lectures, many fancy statistical learning approaches are actually generalizations or extensions of linear regression.
+
+So linear regression, our goal is we have some data, and we want to fit a line to it.
+
+So let's call it Y = B0 + B1 of X.
+
+You've got your intercept term, and then you've got your coefficient for the variable X.
+
+We are then going to take data, observations of X and Y, and we are going to use that to build a model.
+
+So we have B0 hat, B1 hat, and the idea is we are going to approximate these parameters in our distribution.
+
+And depending on how well we've done, we can also look at the residuals.
+
+How accurate or inaccurate have we been?
+
+Logistic regression, very similar to linear regression on the surface, but there's a slight twist to it.
+
+Instead of trying to predict a line right here, Y equals B0 plus B1X, what we're actually going to do is we are going to put that linear term into a sigmoid function.
+
+And what are we trying to do with the sigmoid function?
+
+Well, under the hood of logistic regression, what you do is you are essentially trying to create what's known as a decision boundary.
+
+So let's say we have a plot of two features, income and employment duration.
+
+What we want to do is we want to say, based off of these two features, do we expect the person to default on a loan that they have or do we expect them to repay their loan?
+
+So this is where that linear term in the logistic regression comes in.
+
+However, by running it through the sigmoid function, what we end up doing is saying, well, we're going to receive a probability that comes out of this equation.
+
+Anything with a probability of, say, 0.5 or greater, we're going to predict as one class, let's say the repayment class.
+
+Anything with a probability of 0.5 or less, we are going to predict is class zero or perhaps default.
+
+So again, think of this line as delineating probability equals 0.5.
+
+Everything over here has a probability of greater than 0.5.
+
+Everything here has a probability of less than 0.5, right?
+
+We take those numbers, squish them down between zero and one, and then that probability perhaps tells us whether the image is of a dog or of a cat.
+
+Now that we have refreshed our memory on linear regression and logistic regression, let's talk about performance metrics.
+
+Just because we have a model doesn't mean that that model is any good.
+
+How can we say objectively whether our model performs well?
+
+How can we compare one model's performance against another?
+
+If we make an improvement to the model we have today, how can we objectively say that the performance is better?
+
+And this is where performance metrics come into play.
+
+They give us those objective numbers, those objective characterizations that enable us to define how our algorithm is performing.
+
+Over the next two slides, we are going to talk about some of the most common performance metrics for both regression and classification, and it's important to call out that each type of supervised learning actually utilizes different performance metrics.
+
+For regression, let's start with the most common performance metric known as mean squared error, and let's understand what exactly is going on here.
+
+In mean squared error, what we are looking at is the residual, the difference between the actual value for a given point and the predictor.
+
+What did we think it was going to be?
+
+We then take this residual, we square it, and then calculate the average over all observations.
+
+Now, I want to contrast this with another performance metric that you'll see in regression problems called mean absolute error.
+
+In this case, we look at the residual, but we're taking the absolute value instead of squaring the residual.
+
+So what that means is that if you're using the MSE, larger residuals are penalized much more heavily.
+
+That residual term is squared, but in mean absolute error, it's not squared.
+
+We're just looking at a linear impact.
+
+So obviously makes sense to talk about residuals and perhaps average the weight out overall observations.
+
+But when exactly would you prefer a mean squared error over a mean absolute error?
+
+Well, for MSE, anytime that you want to heavily penalize large errors, that's exactly the kind of performance metric you would want, right?
+
+If you want to equally weight all errors regardless of size, then that's what the mean absolute error is going to be utilized for.
+
+Now, there's one more very similar metric that we should talk about called the mean absolute percentage error, or the MAPE.
+
+In this case, we're still taking the absolute value here, but we're normalizing that residual, right?
+
+We have the actual observation minus the predictor divided by the observation itself.
+
+So in this case, instead of the mean absolute error, what we're actually saying is, well, the residual might be 3.5 for MAE, but by taking this normalization, we're defining the MAPE to be between zero and one.
+
+We're talking about percentages now, right?
+
+Now, one final very important performance metric is called the R-squared.
+
+You're most likely familiar with R-squared from your experience in AAI-500.
+
+What the R-squared does is it is important for answering the question, how much variance, variability in my data is accounted for by my model?
+
+So in this case, let's talk about how the R-squared term is defined.
+
+The first thing we need to do is calculate the SST.
+
+Think of this as the total amount of variance that your dataset has.
+
+You take every observation, you subtract the average value, and then square it.
+
+So think of this as all the variability in your data.
+
+Next, you need to calculate the SSR.
+
+Think of this as, what is the amount of variability still left over from my model?
+
+SSR stands for sum of squares of the residual.
+
+So what we do is, like with the mean squared error, we say, okay, we have our data points, we have our predictor.
+
+What's the difference?
+
+So the SSR is, in essence, saying, how much of this variance have we not captured?
+
+And then the R-squared is actually very easy to calculate.
+
+You simply take one minus the sum of squares of the residuals divided by the sum of squares of total or SST.
+
+So think of it like this.
+
+This is the amount of still unexplained variability, even after your model, and this is the total amount of variability left over.
+
+So let's say that the SSR is 0.1, right?
+
+So 10% variability has not been explained by your model.
+
+What that means is if the SST, let's say this number right here, overall, is 0.1, right, so the ratio of SSR to SST is 0.1, probably a better way of thinking about it, your R-squared is 0.9.
+
+As your model gets better and better, this term gets smaller and smaller, and that means that R-squared will get bigger and bigger 'cause one minus a smaller number equals a bigger number.
+
+Okay, we talked a little bit about MSE versus MAE, but when do you think about using all of these?
+
+Well, you need to use R-squared when you care about how to explain variants and communicate how well your model captures patterns relative to some baseline, like predicting the mean.
+
+If you want to use the MSE, MAE, or the MAPE, this is when you care about error magnitudes, okay?
+
+So another helpful way to think about this is that for your specific situations when you use R-squared, you wanna answer questions, how much better is my model than just predicting the mean or some other naive data set?
+
+You might also want to do model comparisons on the same dataset.
+
+You could compare model A versus model B on the same dataset, and if model A has a better R-square than model B, it captures more of the variance.
+
+It's also worth calling out that for many traditional fields, like economics or healthcare, the audience will expect a goodness-of-fit statistic, another way of saying that folks are used to R-squared because they think about capturing variability.
+
+Now, in a business sense, it's probably gonna be more relevant, not for you to know how much variability is left, but more how far off is your model because that's how business decisions are made.
+
+Do you trust a forecast that is perhaps plus or minus 15% of your annual revenue?
+
+Do you trust a mean squared error that says, we'll predict a house price to within, let's say, plus or minus $150,000, right?
+
+Think of that as a bit more of the real-world impacts and consequences.
+
+However, there are situations when you're going to want to use each one or perhaps all of these performance metrics.
+
+Now, let's talk about performance metrics for classification problems.
+
+Well, we use numerical estimates for regression problems like mean squared errors.
+
+When it comes to classification, we are going to consider the yes/no, zero/one outputs of our classification models, what our models predict as positive or negative versus what the data says is actually positive or negative.
+
+In this case, when I say positive, I'm referring to a binary classification problem.
+
+Positive means class one and negative means class zero.
+
+So what we're going to do is we're going to compare our model's predictions, predicting positive or negative, against the actual observations and whether they themselves were positive or negative.
+
+If our model predicts a positive value, right, class one, and the data point actually is positive, that's what we call a true positive.
+
+If we predict a data point to be positive, but the observation is actually a negative, that's what we call a false positive.
+
+Similarly, if we predict an observation to be negative in the negative class, but it's actually positive, that's called a false negative.
+
+And if something is actually negative and we predict it to be negative, then it's known as a true negative.
+
+Another very familiar term that you'll hear used in the classification world is type-one error, which simply means a false-positive observation, and a type-two error, which means a false-negative observation.
+
+Now, the reason that we care so much about delineating between what is a false positive and what is a false negative and not just whether or not we got the answer correct, is that oftentimes, one type of error is more costly than another.
+
+As an example, think about a situation where the cost of a false positive is really high.
+
+If you're a spam email detection algorithm, it's probably better to let a few spam emails sneak through than miss an extremely important business email.
+
+Missing that business email is a false positive because you thought it was spam.
+
+However, it truly wasn't.
+
+And you're okay with a few false negatives.
+
+In this case, you will predict that a spam message actually is negative when it's in fact truly spam or positive, easier to sort through.
+
+On the other side of this, there are situations when the cost of a false negative is a lot higher than a false positive.
+
+Think of, in this case, screening for a disease in the early stages.
+
+You don't want to miss a potentially life-threatening disease, or a false negative, than perhaps someone having to go in for just another follow-up test, right, the false positive side.
+
+So when we think about performance metrics, in many real-world applications, not all errors are actually created equal, and we need a way to distinguish them.
+
+Now, if you take your favorite classification algorithm and you run it through your favorite Python package's standard evaluation suite, you're going to see something like this where we use terms like precision, recall, and F1 score.
+
+It is these terms that help us understand a little bit better how the algorithm is performing when it comes to type-one errors or type-two errors, or perhaps some combination of both.
+
+Let's start out really simple and talk about accuracy.
+
+This is perhaps the metric that everyone initially thinks about when we consider classification.
+
+It's simply how many of the answers, whether positive or negative, we got correct.
+
+To get this term, you sum the true positives and the true negatives across all of the observations.
+
+If your accuracy is 80%, because this is bounded between 0 and 100%, then that means you got 80% of the positives and negatives correct.
+
+But again, this does not delineate between a false positive or a false negative having relative importance.
+
+For that, we're going to need a metric like precision.
+
+In precision's case, this tells us that of the classes that we predicted to be positive, right, class one, how accurate were we?
+
+If you optimize precision, what you're looking for is you want to have the true positives highly outweigh the false positives.
+
+That means when you predict positive, you're gonna be very accurate.
+
+This is the metric you would use when the cost of false positives is high, right?
+
+You want to decrease that false positive term in the denominator and make sure that, ultimately, it's just a true positive divided by true positive number, so precision maxing out at one.
+
+Now, what do we do if we care about false negatives?
+
+The opposite of this is recall.
+
+In this case, we just look at the true positive divided by the sum total of the true positive plus the false negatives, right?
+
+So precision, think of this as wanting to find false positives of most importance, and for recall, when you consider false negatives to have most importance.
+
+There are perhaps worlds where you want to have an effective balance of both precision and recall.
+
+Many different reasons for this.
+
+This is where you would use something called an F1 score.
+
+This is simply a harmonic mean of the precision and recall.
+
+The numerator, you multiply the two. And the denominator, you simply add the two.
+
+What's an example of where we might pursue an F1 score over precision or recall?
+
+Well, let's think about a situation like information retrieval.
+
+This is a world where our algorithm wants to retrieve relevant documents for user queries.
+
+And in this case, we care about precision. We wanna avoid showing irrelevant pages, right, get rid of some of those false positives, and we also care about recall.
+
+It's a balance because we also don't want to ensure that relevant pages are missed.
+
+So a good balance is gonna maximize your user satisfaction.
+
+In many instances, you'll actually want to see how your algorithm performs across precision, recall, accuracy, and F1 score, which is why the default for most Pythonic packages is to produce the entire metric suite for you when you ask, how did my classification algorithm do?
+
+Now, in the last slide, we talked about how most classification performance metrics only care about the actual output itself.
+
+Did we classify positive or negative?
+
+We didn't really look at the probabilities.
+
+So if I have a logistic regression problem and I have, perhaps, a default decision boundary of anything above probability 0.5 is a 1, anything below that is a zero, well, then if I have probability 0.57, it'll be a 1, probability 0.22 is a 0, 0.99 is a 1, and 0.001 is a 0, great.
+
+That's in line with everything we just talked about.
+
+But let's think about setting that decision boundary at 0.5.
+
+If I am perhaps a lender and I'm building a binary classification algorithm that says, okay, we're gonna put people who we want to extend loan offers to as class one, and people we would say, no, we're gonna pass on you for a loan, as class zero.
+
+Where you set that decision boundary might depend based off of business conditions, right?
+
+If conditions are good, then perhaps you might lower that threshold.
+
+You might say anything with a probability of 0.3 of, yes, we should give this person loan, that's all it takes for us to say, "Let's move forward."
+
+But if economic conditions are bad, you might have a much more stringent cutoff.
+
+You might say, well, actually, we need to have a probability of 0.7 that we should extend them a loan, right?
+
+We need to be more confident about this.
+
+It's also very common when developing medical tests.
+
+You say, well, regardless of where we set this threshold, this decision boundary, what is the test's intrinsic ability to separate the sick from the healthy?
+
+Because this test is going to be deployed in many situations.
+
+Maybe there's a pandemic.
+
+Maybe it turns out that the actual occurrence frequency of the disease is pretty low.
+
+Depending on that information, you might change your classifier decision boundary.
+
+So the question is, what if we care about the overall classifier quality across all thresholds rather than a single threshold?
+
+This is where we come into a term known as the receiver operating characteristic, or ROC.
+
+Now, let's explain what's going on here.
+
+On the x-axis, we have the false-positive rate, and on the y-axis, we have the true-positive rate.
+
+And then in the middle, you see a couple of curves that probably don't make a lot of sense right now.
+
+We have a random classifier, and the claim being made by the graph is that for each algorithm, as it gets better, holistically better across all of those thresholds, it's gonna move up and to the right.
+
+Now, I will say that the receiver operating characteristic is a very convoluted measurement, but if you stare at and sit at what I'm about to teach you, then it'll make sense over time.
+
+So just know it very rarely comes right away.
+
+To make this clear, let's consider two specific situations.
+
+Let's say that we have a model and we say, well, we're gonna have our decision boundary at a probability of 0.85.
+
+That means that we have to have 85% confidence that this thing is a one.
+
+Otherwise, it's a zero, right?
+
+You can imagine that at this point, we're saying nothing's gonna get through.
+
+Model A, we're applying a very, very strict criteria.
+
+What happens to the true positive rate and the false positive rate?
+
+Well, if you think about it, both of them are actually gonna be pretty low, right, or lower, because we are going to restrict everything, true positives and false positives alike.
+
+But in theory, if our model is working, it's actually going to have a higher number of true positives than false positives, right?
+
+So for a model that's really, really good, let's say for almost every data point, it gets a 90% classification value of, yes, this is the probability that it is a one, it's gonna be higher.
+
+A model that's bad, let's say a random classifier.
+
+In this case, we're just flipping a coin every time to say whether or not, you know, something is actually going to be one or a zero.
+
+You're actually going to have a 50% chance whether or not something is gonna be a true positive or a false positive.
+
+So the idea is with this strict threshold, the better your model is, the more it's gonna be able to classify correctly the positives as positives.
+
+Now, let's look at this from the other perspective.
+
+Let's create a model where everything gets through.
+
+Our threshold is now a probability of 15% or higher, right?
+
+So this includes all the examples where we're sure the answer's positive, but honestly a lot where we're not sure.
+
+In this case, we'll get more true positives, but we'll also get more positives because everything is getting through.
+
+Now, take a step back and realize that one end of the ROC is talking about a world where nothing gets through, and the other end is where everything gets through.
+
+And in between here, moving from A to B, what you're doing is you're actually decreasing that classification threshold.
+
+You're going from a very tight, high, stringent classification to a very low one.
+
+As you do that, you're not only gonna let in more positives, but you're also gonna let in more false positives.
+
+But the hope is that if your classification algorithm is good, you're gonna let in those true positives a lot quicker than you are those false positives.
+
+And in fact, if you have a perfect classifier, one that says, "I am able to determine every true positive with a perfect ability," then what that means is that every single positive will have a probability of one, and you're immediately going to shoot up here without any false positives.
+
+So the reason that we call it the area under the receiver operating characteristic is, in order to compare these models, we simply take the integral or the area underneath.
+
+So you'll end up with values between 0.5 and 1.
+
+If you have a perfect classifier, the area of this whole square is one.
+
+A random classifier where we're saying, "I don't know, maybe it's class one, maybe it's zero, maybe it's positive, maybe it's negative, I don't know," that's 0.5.
+
+That's, like, the low end of the spectrum, and your model will be somewhere in there.
+
+But the more area you have under the curve, the more you get this up-and-to-the-left behavior, and the closer it gets to one.
+
+So think of this as the perfect way of seeing that holistic overall classifier quality rather than looking at a single point.
+
+Thank you for watching this presentation.
