@@ -17,6 +17,8 @@ graphviz
 # --- Search lab (Module 2: Dijkstra, A*, graph plots) ---
 networkx
 matplotlib
+osmnx
+scikit-learn
 
 # --- Notebooks, export to HTML/PDF, API key handling ---
 ipykernel
