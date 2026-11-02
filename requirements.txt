@@ -14,6 +14,10 @@ llama-index-llms-google-genai
 # Also needs the Graphviz program installed on Windows (winget install Graphviz.Graphviz, then restart the terminal)
 graphviz
 
+# --- Search lab (Module 2: Dijkstra, A*, graph plots) ---
+networkx
+matplotlib
+
 # --- Notebooks, export to HTML/PDF, API key handling ---
 ipykernel
 notebook
