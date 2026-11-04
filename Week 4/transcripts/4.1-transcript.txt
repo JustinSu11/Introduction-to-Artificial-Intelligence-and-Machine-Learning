@@ -1,0 +1,195 @@
+Presentation 4.1: Supervised Learning (Model Building)
+AudioLinks to an external site. (42:33)
+Summary
+Explains supervised learning with labeled data.
+Uses linear regression as a model-building example.
+Highlights strengths: interpretability, inference, efficiency.
+Introduces loss functions and gradient descent optimization.
+Notes variations: batch, stochastic, and mini-batch approaches.
+Transcript
+Welcome to AAI-501. Today, we're going to be learning more about supervised learning. And specifically, how supervised learning models are actually built. Let's use linear regression as our example. You'll recall that in linear regression, we have two parameters in our basic model.
+
+We have the term B_0, which is an intercept term, and B_1, which you multiply by X, and is, in fact, a coefficient. Now, we also know that when we build linear regression, we have a number of observations. x_1, y_1, x_1, y_2. And that somehow, we take these observations and ultimately end up with an estimate for B_0 and B_1. And in theory, these parameters will then tell us the line that best fits our data.
+
+And we'll also be able to see how well our data is fit. The residuals. The difference between each point and the prediction. So, again, the question is how exactly do we calculate B_0 and B_1? Before we go any further, I'd like to say a couple of things about linear regression.
+
+Linear regression often gets a bad rap and is seen as a perhaps more simplistic algorithm that should be dropped as soon as you learn about some of the more advanced methods that we'll cover in this module and the modules to come. But nothing could be further from the truth. Linear regression needs to be seen as a very important tool in your toolkit going through your professional lives. There's four main reasons why linear regression is so impactful. The first is interpretability.
+
+The coefficients of your linear regression model directly describe both the impact of change and the relative importance of the variables to one another. It can tell you that for every dollar you spend advertising your product on Instagram, this is the return on investment you expect. The second element is that linear regression automatically gives you a whole world of statistical inference opportunities. Those coefficients, you can start to apply P-values or confidence intervals to. And the importance of being able to do statistical inference in industry cannot be understated.
+
+I'll give you a quick example. Let's say that you are giving a presentation to your executive board. And you are attempting to pitch more advertising spend on Pinterest. The way that most companies work is that they have a minimum threshold of ROI that they expect for any given investment. This is called NPV or IRR, net present value or internal rate of return in real-life.
+
+And so, oftentimes, they might say something like, "Well, we need to know that this project is going to have an ROI of at least $3," right? So let's say that in your presentation, you come up with the confidence interval seen in the upper right hand corner. Well, I've calculated that every dollar that we spend on Pinterest returns $3.50. And I know that the lower bound, my 95% confidence interval, is $3.25. And my upper bound is $3.75.
+
+It's important to call out that it matters a lot less that the point estimate is $3.50. It could be $3.57. It could be $3.42. What will matter to your executive board is that your lower bound is above $3. It's at $3.25.
+
+Said another way, in business, often, it's not how accurate is this number? But rather, is this number above the threshold at which I decide I will make a different decision? And statistical inference directly gives you the ability to say that, yes, there is a statistical significance, only a 5% chance that we would see something above $3 just due to random noise. And that additional confidence, no pun intended, is often what business leaders want. Now, linear regression also has a much more robust modeling capability than most people give it credit for.
+
+You can include interaction in terms such as x*y. You can include non-linear features. x to the fourth or the log of x. And lastly, linear regression is extremely computationally efficient. It's very easy to deploy and debug.
+
+And usually, it's a very scalable model. Let's also dive a bit deeper into this whole concept that linear regression doesn't mean linear everywhere. There are many tricks of the trade you can apply to make linear regression more powerful. The first is you can use what's known as a log-transformed linear model. You can apply the log transform directly to variables such as house prices or demand elasticity.
+
+Perhaps model the log of y as being linear instead of just y. As we said in the previous slide, you can incorporate polynomial regression. So putting polynomial terms in the independent variable, like if you're trying to model the stopping distance of a car, can be very impactful. And as you've learned in previous classes at the University of San Diego, there are even more advanced linear regression models, such as GLMs, generalized linear models. In this case, you can say that you don't even need your dependent variable to be normally distributed.
+
+You can even go so far as to use a generalized additive model and say, you know what? I don't need to just have linear terms for my predictors. I can just have non-linear smooth functions. GLMs, GAMs. These are just some of the very powerful ways that you can leverage linear regression.
+
+All that to say, don't count linear regression out. And keep it in your toolbox as you progress in your AI careers. But I digress. Let's get back to the problem at hand. Namely, how do we figure out the B_0 and B_1 model parameters for our linear regression, based off of the data we have?
+
+Well, one way that you might think we'd want to start is perhaps try a bunch of different combinations of B_0 and B_1. Practically, that would translate to making many different lines and seeing which one actually fits the best. And in fact, this is indeed the right line of thinking for how models are actually built. We can quantify this idea of seeing which parameter combinations fit the best by bringing in the performance metrics that we talked about in the last module. Remember that for both regression and classification, we have mathematical ways of measuring how good a prediction or models fit is.
+
+So perhaps what we can do is find a way to say, all right, if we can calculate the mean squared error, the MSE, for a bunch of different models, well, whichever one has the lowest MSE at the end of the day wins. And perhaps we can do something similar for classification. And this is exactly the approach we're going to take. Our goal, when building a model, when figuring out what model parameters we need to use is to minimize our performance metric, otherwise known as an error function or a loss function. But there's a catch.
+
+In order for us to do this efficiently, we actually need the error term, the performance metric, to be differentiable. This seems like a very odd requirement. Why do we need to take the derivative of our performance metric? Can't we just calculate it directly? Well, we could.
+
+But there's a more advanced, more efficient method of figuring out which parameters work the best, and by extension, which ones minimize the error term. And that approach is known as gradient descent. Let's look at gradient descent in a bit more detail using an example. Suppose that we are trying to solve a regression problem. We're going to choose a differentiable loss function, such as mean squared error.
+
+And we're gonna use it to fit a linear regression model. Meaning that we wanna find the parameters B_0 and B_1. The whole idea behind gradient descent is, let's rewrite that loss function and make it a function of the parameters that we care about finding. In this case, B_0 and B_1. How do we do this?
+
+The how is actually pretty simple. All we need to do is take y_hat and substitute in our equation. If you do that and come back to our loss function, what you'll see is y_i and x_i, these are just scalars. They are the observation values from our dataset. And all we have remaining are the parameters B_0 and B_1.
+
+Okay, so that's the how. But why do we want to do this? Remember, our goal is to find the combination or the values of B_0 and B_1 that minimize our loss function. And if we think back to our basic calculus, the minimum of a function can be found where the slope is zero, AKA, where the derivative is zero. And this even extends to multi-dimensional problems.
+
+So instead of just having f(x), maybe you have a function of, say, B_0 and B_1. And if you want to find the minimum value, you need to find where the slope or the derivative is zero. Now, the multidimensional equivalent to a derivative is a gradient. The gradient is simply the partial derivative with respect to each of the variables or weights that you wanna solve for. So what I put to you is that if we could just set this gradient to zero, and solve for these weights, well, then we would actually find the value of B_0 and B_1 that minimizes the loss function.
+
+And our problem would be solved. We'd have the parameter values that we would need for our model. Now, an important catch is that we usually can't solve for the gradient equal to zero directly. There are too many parameters. Too much complication in that math in practice for you to directly solve.
+
+However, there is in fact a way that gradient descent enables us to iterate our way to the minimum. And here's how that works. Let's just think of a simple example. In this case, we're only optimizing one parameter. The idea is that you start somewhere randomly.
+
+You randomize the initial value or the initial parameter that you're using. And then the idea is at each step, you calculate the quickest rate of descent, right? So imagine. Let's say you're standing on a mountain. And you're trying to find the fastest way down to the valley.
+
+What you're gonna do is you're gonna say, "What is the steepest direction for me to move, given where I'm standing right now?" And the way that you do that is you calculate the derivative or gradient at each point. So in this case, moving in this direction is the steepest slope of descent, the quickest way to get to the minimum, for your parameter. And then you do it again and again and again. Always moving in the direction of steepest descent until you hit a value of zero. Mathematically, here's how this works.
+
+To update, for our example, Beta_0 and Beta_1, we start with the original value. And then we find the gradient at each step. In this case, the partial derivative. Remember, the gradient, you can think of as the multidimensional derivative. And we take a small step size of alpha, called the learning rate, which we'll talk about in a second.
+
+That is our small step size that we move from the old value of Beta_0 to the new value. So that is the example where we move from one step to the next. And remember. It's easy for us to calculate these partial derivatives that is this gradient because our loss function is differentiable. This is why it was so important for us to choose a function that was differentiable to begin with.
+
+So put in another way, the gradient at each step is going to be your steepest way down the hill. So we take small steps to improve, gradually, our parameter values from that randomness until we converge to a minimum. Now, you can think of the learning rate as your step size. How big of a step do you want to take once you know the right direction? Well, it turns out that you can do this in steps that are too small.
+
+If your steps are too small, your learning rate is too small, then it could take a long time to converge, to find that minimum. And when you're dealing with models that have millions or perhaps billions of parameters, you might be waiting several iterations of your lifetime. At the same time, you might also have a step size that's too large. What ends up happening is that if you take giant steps, you might overshoot the minimum. And in some situations, end up increasing your loss function as you get bigger.
+
+So the goal is to find a step size that is just right. Not too small. Not too large. Oftentimes, this is something that you are going to need to figure out by trial and error. One useful way to find the optimal learning rate is to look at how your loss function decreases or perhaps increases across time as you take steps down the hill and process through your dataset.
+
+As we mentioned before, if you have a very high learning rate, what can sometimes happen is you see the loss function spike up. If your learning rate is low, if the step size is too small, well, you'll see continued convergence. But it's gonna take a while. If you have too high of a learning rate, what can often happen is you will hit a plateau relatively rapidly. But it still won't be as low as your model can go.
+
+In contrast, a good learning rate shows a respectable rate of descent over a number of steps. Now that we understand gradient descent in more detail, let's make a point of clarification between loss functions and performance metrics. Now, we began this whole journey with gradient descent by saying that we wanted a function, a loss function that could measure how well our predictors match the ground truth. This is almost identical to what a performance metric is, right? So for a performance metric, we want the same thing.
+
+How well did our model do? However, loss functions have the added requirement that they must be differentiable. Now, for many algorithms and many approaches, you can use the same function as your loss function and as your performance metrics. A good example of this is mean squared error for regression. In this case, it's differentiable.
+
+And it does a great job matching our predictors to how well they perform to the ground truth. For classification, however, things get a little bit more complex. The loss function that is typically used for binary classification is known as binary cross-entropy. And it looks quite complex. However, if we break this model down and think about what it does in practice, things will get a lot simpler.
+
+So let's think about this model in two instances. When the actual ground truth is 1, class 1, or the actual ground truth is 0, class is 0. Well, if the ground truth is 1, what would we want our model to do? Well, we want the loss function to be pretty close to 0 if our predicted value is 1. And we'd want it to be pretty high if our predicted value is 0, right?
+
+We want our model to get things correct. So what happens when we plug in y equals 1? The actual observation is 1. Well, the binary cross-entropy just reduces to this negative log y_hat of i term. And what you'll see is that if you plug in 0, or you plug in y, or excuse me, you plug in 1, we get exactly the behavior we were hoping for.
+
+Negative log of 1 is 0. Negative log of 0? Well, that's a pretty big number. So you can see that it's capturing the behavior we want for points where the actual ground truth is 1. Conversely, what do we want if the ground truth observation is 0?
+
+We want our loss function to be 0 when our predicted value is 0. And we want it to be extremely high if the predicted value is 1, right? If our model is really off the mark. Well, this equation reduces to negative log 1 - y_hat of i when y equals 0. Again, all we're doing here is we're plugging in say, 0 here, or a 1 here, a 1 here, a 0 here.
+
+And that's how this equation is collapsing. But if you put in a 0, what do you get? Negative log of 1 is 0. If you plug in a 1, negative log of 0 is a pretty big number. So, again, you can see that the behavior of the binary cross-entropy loss function gives us exactly what we're looking for.
+
+It seems convoluted at first. But I promise you. If you look at this a couple of times, it will make sense. Now, there are a couple of different ways you can perform gradient descent. The first is known as batch gradient descent.
+
+And the idea here is that you take all of your training set, all n samples, and use them simultaneously to calculate that gradient step that we discussed earlier. Now, this means that you update your weights once. You then do another round of batch gradient descent where you calculate using the same entire dataset again. And you do this again and again and again and again until you reach converges. Now, gradient descent in the batch flavor converges smoothly.
+
+It's usually best for small data sets because, again, for each step size you take, you're putting your entire training set into your computer. This also means that it can sometimes get stuck in local minima. It does tend to be more deterministic or repeatable. So that's the first flavor. Batch gradient descent.
+
+Let's come over to the far side. Stochastic gradient descent. The idea here is that instead of using all of your data points at once to calculate the gradient, why not just use one? It seems a little counterintuitive. But this is actually a very powerful method for doing gradient descent.
+
+So what we do is we update our weights based off of the gradient we calculated at one point. And then we do it again and again and again until we've covered the entire training set. And then we go through the entire training set again, one data point at a time. Now, stochastic gradient descent has very fast performance 'cause you're computing less. This element of randomness, skipping around from one data point to another, where you could have vastly different gradients, this actually helps you avoid getting stuck in a minimum.
+
+At the same time, the convergence can be quite noisy, as would be expected. Stochastic gradient descent is often used when your data set is large or when you're performing online learning. So that means real-time streaming data. Predicting stock prices and you're updating your prediction based off of every ticker trade that comes in. Now, mini-batch is a way to balance both extremes.
+
+Let's not use the whole dataset. But let's use more than one example. So, for instance, you might use 32, 64, or 128 data points. The idea here is that you balance the extremes. So you get some of the advantages of parallelization and batch where can calculate more than one data point at once.
+
+However, it also does introduce an extra hyperparameter 'cause in mini-batch, now, you have to decide what is the chunk size that I want to run through my model? It turns out that this ability to balance the extremes, smooth convergence with fast noisy performance, tends to be the best option in almost every case. And it is the default in deep learning as we will see in the next module. Here's another way to look at batch versus mini-batch gradient descent. In batch gradient descent, we expect a much smoother descent of our cost function for every iteration that we do over our dataset.
+
+Another way you can think of this is, let's say, for our example for linear regression where we're trying to fit B_0 and B_1, you can model that loss function as a plane. And what our gradient descent does is it finds a nice smooth path all the way down to the minimum. In mini-batch, we're gonna have a lot more stochasticity, right? Because the batches could be vastly different. And so they might be optimizing for different things when you run them through gradient descent.
+
+So we'll bounce here, here, here, here, here. But then ultimately, hopefully, land at the minimum. There's actually a way that we can smooth the noise, this stochasticity from SGD or mini-batch gradient descent. And it's a concept known as momentum. The idea here is that we're actually going to use a moving average, a rolling average of the gradient descent steps we found to have a nicer, smoother descent.
+
+And here's how we do that. The first step in momentum is you compute the gradient at your current step. Once you've done that, you are going to compute or update a term known as the velocity. Think of this as the moving average. All it is is, well, what is the gradient?
+
+And what is the velocity at the time step before? Now, the time step before, its velocity is going to be g_t - 1. And then velocity of t - 2 is simply the gradient of t - 2. So this essentially becomes a moving average where we can determine how much weight we put on the newest step versus the old step. Maybe it's 90% new gradient value, 10% old gradient value.
+
+Once we've got that moving average, that in turn is how we update our parameters, is we're essentially using a weighted version of the gradient, which will help smooth out some of the bounciness of SGD or mini-batch. Another issue that commonly pops up in gradient descent is that the gradient sizes can actually vary significantly across parameters. Perhaps for parameter B_0, we're talking on the order of thousands. And for parameter B_1, the gradient is on the order of tens or of ones. This is a very common step.
+
+And what ends up happening is this leads to oscillations where you're taking massively large steps across one parameter direction and very small steps across the other. And this is only happening simply because of the scale. Now, it turns out that what you would want to have, ideally, is anywhere you have a large gradient, you wanna take smaller steps so that you don't overshoot. And anywhere you have small gradients, you might actually want to take larger steps because that way, you can actually make progress and perhaps get yourself out of a flat plane. And this is exactly what RMSprop, or root mean square prop, does.
+
+Very similarly to momentum, we begin by computing the gradient. We then compute the velocity or moving average. But notice that there is a squared term in here. The squared term is the gradient at our current step. And then what we do is we update our parameters.
+
+And notice this. Notice how what we're going to do is we're gonna have our gradient. Our multidimensional vector, right? If we have multiple parameters. But it's gonna be divided by this term right here because the velocity is here in the denominator.
+
+Well, because we're essentially dividing by the squared term of the gradient, steps in the gradient that are massive are going to have a much larger denomination value. Steps that are small are gonna have a much smaller denomination value. So think of this as a scaling term that scales down big parameter values and scales up small parameter values. And what this will do is it will prevent exploding gradients or vanishing steps or oscillations that is bouncing back and forth in steep or narrow valleys of your loss function. Lastly, you can combine both momentum and RMSprop to get what's known as the Adam Optimizer.
+
+Remember. Momentum accelerates learning and preserves that directional movement because it's simply smoothing out all those oscillations. The noise. RMSprop, on the other hand, it adapts the learning rates. And it prevents large updates in high gradient areas that might cause exploding or vanishing gradients.
+
+Adam in term is going to leverage momentum's acceleration, right? The ability to just get to what matters. Particularly, in flatter areas. And then RMSprop in term is going to allow for adaptive learning rates to prevent instability. And what is very commonly seen is that if you compare multiple different ways to optimize stochastic gradient descent, mini-batch gradient descent, or batch gradient descent, usually, Adam optimization is going to outperform all sorts of other methods.
+
+So it is, in fact, the most common optimizer approach in deep learning today. Okay. So now, we know how gradient descent works. And we know that we need to use some data to fit our model, to fit our parameters. But the question is how much data do we actually use?
+
+You might think that if, say, we have our full data set here, and, again, because this is a supervised learning problem, we need to break it into features, right? And the variables we use to predict. And then our target variable, what we're trying to predict. We should just take this whole thing and throw it directly into gradient descent in order to get our answer. But there's actually another step we need to take.
+
+And that step is known as the train/test split. What we do is we take our data set and we divide it into a training set and a testing set. Now, what we will do is we are going to use our training data set to train our model through stochastic gradient descent, or mini-batch gradient descent, or batch gradient descent. We're going to get a final loss score. And we're gonna get that loss score and judge it on our test set.
+
+And then we're going to have this back and forth, back and forth function where we train with a certain set of hyperparameters, right? Learning rate, momentum, Adam optimization values. Test it against our test set. And then go back and try to train again. Now, what's the purpose of this train/test split?
+
+This seems like an extra step. Well, remember that in machine learning, it's not about modeling the data. What we really want to do is we want to know about the distribution or the function that makes the data. And if we fit our model on all of the data at once, you can think of it as say, trying to train your robot to take a test, but giving it the answer key. Ultimately, you're going to refine your model so much that it will memorize the model data, or excuse me, the full data set perfectly.
+
+So it'll do great on the test. But it won't be able to solve real-world problems. By splitting out on a test dataset that your model ultimately can't optimize against, because remember, the test dataset is not what you plug into gradient descent, you essentially force your algorithm or robot to study for the test. In that instance, it has to learn a more robust generalization that ultimately works better for the real-world. To put another way, if you don't have the train/test split, and let's say there's 100 questions on the exam, you could easily score 100.
+
+But it doesn't mean you're good at math. You only memorize the answers. Now, with train/test split, let's say that your teacher gives you 70 practice questions. That's your training test, or training set. And you keep 30 questions that ultimately become the test itself.
+
+So after practicing, you take the exam and then see how you do. So then your performance actually indicates how well you've learned the math. Not just, well, memorized your answers. Now, if you think about this for long enough, what you might realize is, well, wait a minute. Aren't we, in essence, going to be memorizing the test data, even if it's not perfectly represented in gradient descent?
+
+And the answer is yes. Oftentimes, in train/test splits, you can end up with a bias towards whatever is in your test data 'cause that's the real quote unquote "answer" that you're pushing your algorithm to learn. Additionally, one of the problems with train/test splits is that you'll often use 70% or 80% of your data to train on. And that leaves 20% or 30% of your data that your model doesn't get to train against. So you're essentially having to throw out a good chunk of what might be expensive data.
+
+One way that you can potentially get around this is using cross-validation. And the idea here is let's split our data into five equal sizes, 20%. And what you will do is you will do your train/test split. And you'll do it using four out of these five folds for training. And the last one for testing.
+
+But then you iterate across every single fold, getting it one chance to be the test while everything else is the train. And the advantage here is that you end up with a more reliable estimate of your model's performance because you're using all of the data. And you're averaging results across different subsets. So this is very efficient. Now, it's important to call out that there are some downsides to cross-validation.
+
+One is that it requires more computation, right? So now, we have to run our model five times instead of one. Additionally, there's an added complexity that comes with cross-validation simply because you have to implement it and make sure that you're managing the performance metrics and adding them, right, together. And then lastly, there's a risk of data leakage if you do this improperly. So if you don't properly randomize before splitting, well, you might end up grouping like with like in each of the folds.
+
+And that ultimately ends up leading to data leakage. So cross-validation, it's a wonderful advantage and next step beyond a train/test split. But it's not perfect. Now, we've talked about gradient descent. And we've talked about train/test splits.
+
+And we've talked about cross-validation. What goes into production? We've built our model. We've tested it. We've tuned our hyperparameters.
+
+Added, removed features. What do we do to go into production? What you do is you put everything into your model. This is actually a point that trips up many machine learning practitioners. If you say, used a 70 to 30 train/test split, you are not going to deploy the model that's only seen your training data of 70%.
+
+You may have scored it on 30%. And hence, only trained it on 70%. But when it goes into production, you can train the model on everything. Because remember, the whole goal of doing the train/test split or of doing cross-validation is simply to get your model as good as it can be. To optimize those hyperparameters.
+
+To do all of the feature engineering and other elements you'll learn about in this course. And once you've gotten that score as good as you can, go ahead and put everything into production. Before we end this lecture, I wanna conclude by discussing a topic that you are going to encounter many times in your machine learning and artificial intelligence careers. And that's the topic of bias and variance. Let's unpack these a little bit using an example of shooting arrows at a target.
+
+Now, when we talk about bias, we talk about how accurate were we or how close to the center. If we have all of our shots near the center, we would say we have low bias. If all of our shots are off center, we would say we have high bias. So that's one element. The second element is how well grouped were my arrow shots?
+
+If they're grouped together, regardless of whether they're close to the target or not, then we have low variance. But if there's a wide spread, then we say that there's high variance. Now, what exactly does bias and variance have to do with machine learning modeling? Well, remember that when we build models, we build them with a subset of some general population that we want to capture. That is, our training set is a sample, a statistical sample pulled from a larger population that we want to model.
+
+For instance, we could imagine trying to build an algorithm that predicts blood pressure. In the United States, we have about 300 million people. And you could imagine a training set of 10,000 medical histories, let's say. Now, we could have many different 10,000 subsets. Perhaps people from the East Coast, the Midwest, or the West Coast.
+
+And what we would do is we would say, how similar are those models that we built? If the models turn out to be accurate at predicting blood pressure, then we would say that they have very low bias, right? They're not off-target. However, if they are extremely inaccurate, but tend to be pretty similar in nature, then those models have high bias. Similarly, if our blood pressure model is accurate, but each of the models are very different, depending on which subset of the population you chose, right?
+
+Then we would say that the models have high variance. But if our models are so powerful at predicting blood pressure that it doesn't matter which 10,000 people you used from the American population, then we would say it has low variance. So think of bias and variance as attempts or at bats of building a certain model. Let's now take these concepts of bias and variance and look at them a little bit more deeply. When we say that a machine learning model has high bias, we mean that that model is just too simple to capture the underlying pattern.
+
+As an example, let's think back to our algorithm to predict blood pressure. And let's say that our dataset was actually logarithmic in nature, but our blood pressure prediction algorithm was linear. No matter what 10,000 sample population we used, it doesn't matter where in the United States they were from, how healthy, how sick, our model would always miss the mark because linearity can never capture this curve. It's too simple. And thus it has high bias because it's always gonna miss that bullseye mark.
+
+On the other side, let's think of a model with high variance. This is a model that's overly complex and fits to noise. A model with high variance, well, the slide we just saw before shows that it's a widespread. That means, depending on what data set you use for your model, you could get vastly different answers. And that's analogous to having a model that fits so well to your subset of the American population that it fits too well.
+
+It captures the noise, the fluctuations. Maybe the 10,000 person subset that you have somehow had some random fluctuations relating to food preferences or something like that. But they only applied to that 10,000 person sample. That's akin to capturing the noise and not the underlying pattern. What we want is a model that has low bias and low variance.
+
+It's complex enough to capture the pattern. But it's not so complex that it's going to fit the random noise that's inherent in any sampling of a population. So the way that we can think about this is fewer parameters in our model tend to lead to high bias. More parameters in our model lead to high variance. So it really is this trade-off in model complexity.
+
+We wanna find the sweet spot. We wanna model with enough complexity. But also one that still generalizes well enough so that we can get an excellent error outcome. Now, how can we diagnose this bias and variance trade-off? We can do this using something known as a learning curve.
+
+And a learning curve will depend on having a train/test split or a train and cross-validation split. What we are going to do is we are going to say, let's calculate our training accuracy score and our cross-validation accuracy score and increase the number of training examples that we have. Why would we do this? Well, instead of trying to build the same model on multiple samples of the same data set and test generalization that way, we can simply increase the amount of data available to our model. That's another way to test generalization 'cause you're seeing more of the world.
+
+In a model that's overfit, you're gonna see an excellent training score, right? It memorizes all of the nuances and wiggles in your data. But your cross-validation score, when it generalizes is gonna be low because, again, it's not capturing the general pattern. And there's gonna be a gap. If your model is underfit, what you'll see is that both your training score and your cross-validation score are ultimately gonna be pretty poor.
+
+Because no matter how much data you have, your model is just too simple. A linear model cannot capture non-linear relationships. But a good model, a model that fits extremely well and doesn't have overfitting or underfitting, you'll see the training and the cross-validation score converge to a higher value. The more data you see, the more that your model should be able to generalize and capture the underlying pattern. So learning curves are an extremely powerful tool for diagnosing bias and variance.
+
+And I'll end by saying there are a couple of other ways that you can evaluate your model. In cross-validation, if you have high bias, you're gonna see high errors across all of your folds. If there's high variance, you'll actually see difference in errors across your folds. Remember, high variance means, depending on the subset of the population we got, our model is gonna get vastly different. So cross-validation is one way to test.
+
+Now, it's important for me to remind you again that model complexity factors into bias and variance. If you have high bias, well, one way you can diagnose that is can you increase the complexity of your model? And does it improve accuracy? If you have high variance, that means decreasing the complexity of your model will improve accuracy. And lastly, we can look at residuals.
+
+Error visualization. If we see a systemic pattern for, let's say, a regression problem, then that is indicative of high bias. If you see a large scatter of your residuals, then you're gonna have high variance. Now, another point is you can sometimes even look at the decision boundaries that your model is creating. If they're highly simple, there's a risk of higher bias.
+
+But if it looks like they're extremely complex and fragmented, well, then you have to watch out for high variance because your model's creating a very complex view of the world. Thank you for watching this presentation.
+
