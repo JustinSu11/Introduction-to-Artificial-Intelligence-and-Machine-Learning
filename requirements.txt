@@ -25,3 +25,6 @@ ipykernel
 notebook
 nbconvert
 python-dotenv
+
+# --- Linear programming / Optimization (Module 3) ---
+pulp
