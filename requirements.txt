@@ -28,3 +28,7 @@ python-dotenv
 
 # --- Linear programming / Optimization (Module 3) ---
 pulp
+
+# --- XGBoost and ML (Module 4) ---
+xgboost
+seaborn
