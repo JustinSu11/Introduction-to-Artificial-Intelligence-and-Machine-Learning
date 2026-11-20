@@ -1,0 +1,22 @@
+Presentation 5.5: Lab - StatsForecast
+AudioLinks to an external site. (5:15)
+Summary
+Introduces the Module 5 lab and the StatsForecast (Nixtla) package.
+Demonstrates how to build forecasts using SeasonalNaive, ETS, and ARIMA models.
+Applies forecasting to monthly milk production data as the case study.
+Explains how StatsForecast handles parameter optimization behind the scenes.
+Shows that the generated forecasts look accurate when visualized.
+Transcript
+Into the Module five lab session, Today, I will show you how to use the Python Nixtla package, otherwise known as Stats Forecast, to generate a 12 step forecast of monthly milk production based off of historical data. Let's get started. The first thing we're going to need to do is run pip install to make sure that the Nixtla package is ready to go. Unfortunately, StatsForecast is not usually included in a base Google collab image, so you will likely need to set it up yourself. Next, we'll go ahead and we'll run our necessary import statements.
+
+We have our traditional pandas and matplot.lib statements, but notice that we have two new import statements here. We are going to import what we'll call the StatsForecast forecasting engine. This is the main component of the Nixtla package and it enables you to consolidate all of the various forecasting steps together into one helpful class. Additionally, from the statsforecast.model sub package, just like with Scikit-learn, we can directly import models that we would like to use, and today we are going to create three forecasts from the SeasonalNaive method, the exponential smoothing method, and the ARIMA method.
+
+You'll notice that these are both called AutoETS and AutoARIMA because most of the parameter optimization, PDQ, whatever you might need is handled on the backend. It's really helpful component. We'll go ahead and import. And what we'll do is we'll go ahead and load a very common data set that charts the amount of milk produced over several decades. I'll create the plot for you here and you can see that this is data showing us, I believe this is in thousands of gallons, the production of milk from 1962 all the way up to 1976, and you can see that there is some trend and there's some seasonality and likely some noise.
+
+What we will do is we are going to create a very simple Train-test split. We are going to say that the training data is everything from 1975 and before. The test data set is everything from 1975 onward. So let's see how well we can predict this next year's worth of milk production. What we're going to do is we're going to go ahead and we're going to create a list of the models that we want to load. SeasonalNaive, AutoETS, and AutoARIMA, and in this case, what we're passing in here is 12 for 12 months out of the year.
+
+The data is listed monthly, but the seasonality happens every 12 steps, aka yearly. And what we're going to do is we are going to create an instance of this StatsForecast class. We will pass at the models. We're telling it the frequency of the data, and then this N jobs equals negative one. This is just a command if you do actually want to parallelize running your different algorithms. And then what we'll do is we will go ahead and create a forecast directly from our StatsForecast object. We have the data frame for training, and we also have the desire to forecast 12 steps ahead.
+
+That is 12 months ahead, aka one year ahead. So let's go ahead and do that. This might just take us a second. Lastly, let's go ahead and plot our results. Oh, that's right. This graph is actually pounds per cow, not total created. Okay and what you can see is our forecasts visually seem to do pretty good. I'm leaving it as an exercise for the reader to update this lab notebook to include your various accuracy metrics. But as you can see, this has been a very straightforward way to forecast all of your potential data for the year ahead, and it turns out that most forecasting packages in Python are trying to automate as many steps under the hood as they possibly can.
+
+You'll see this not only for Nixtla but for other packages such as Facebook's famous Profit package. So just keep in mind that it is a double-edged sword. Automating the choice of parameters and fine tuning is great for most instances, but it can make the decisions your algorithm takes a little bit more obfuscated, so 90% of the time, that's great. That other 10% you're gonna need to get engaged heavily with the packages documentation. Okay, that's it for now.

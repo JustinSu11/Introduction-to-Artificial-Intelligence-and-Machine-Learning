@@ -1,0 +1,68 @@
+Presentation 7.3: Model-free RL
+AudioLinks to an external site. (16:00)
+Summary
+Explains model-free RL as learning from experience without full models.
+Introduces Q-learning as an iterative method to approximate optimal Q-values.
+Uses temporal-difference error for updating Q-values in a Q-table.
+Describes Q-tables for simple problems and their scalability issues.
+Mentions advanced methods: deep Q-networks, policy gradients, and actor-critic approaches.
+Transcript
+Welcome to a AAI-501, module seven model-free reinforcement learning. In the last lecture, we talked about model-based reinforcement learning. In this world, if we can build a complete model of our environment, that is expressly come up with a solution that defines the transition probabilities and the rewards we get at any different state action combination, then we saw how we can actually start to solve for optimal decision-making policies. However, most of the reinforcement learning problems that you will encounter are just too big for model-based reinforcement learning. They're too complex.
+
+You can't consider every single aspect of the world. And this is where we start to lean into model-free reinforcement learning, where the idea is that we don't have a model of the environment, but instead our agent learns from experience. Now, this is a simpler approach that's also more robust in complex environments. The downside is that it is data inefficient, meaning you need a lot of data to start solving for optimal outcomes. But we see model-free reinforcement learning in many different elements and applications such as recommender systems, video games, expanses into some robotics and the like.
+
+So how do we start solving for optimal decision-making? Well, to do this, let's revisit our friends, the somewhat confusing Bellman equations. And now we're going to focus in on the Q value. In this case, what we're going to look for is to say, what is the optimal Q value for a given state s and a given action a at any given time? Remember, that's what the Q star here is representing.
+
+Well, using some additional math that we won't get into in this lecture, we can actually rewrite this equation as an iteratively updating approach. That's what you see below. And the idea is as follows. If, like in the model-based reinforcement learning approach, we can iterate our way to not perhaps the actual Q star s of a, but a good approximation, the Q brackets of s and a, then perhaps our approximation will converge with enough iterations. And this in turn is called Q learning.
+
+To say it again, we don't know Q star, but we can estimate it using observations. That is with every round of interaction that our agent has with the environment. To do so, let's perhaps take a step back and talk about how we might be able to make a simple approximation and forecast of numbers that we have coming in across time. So let's say we have value one, value two, value three. And we want to predict value four or perhaps value k.
+
+One very common way of doing this is using a moving average. On the left-hand side, what we can say is, well, let's say we have our time step k. What is the average value that we might want to use at time step k? Well, one approach you could say is, well, we had an average value, the last step Ak minus 1, maybe what we'll do is we will apply a decay weight to it, this 1 minus alpha sub k. And then what we can do is we can add in our new observation, v of k.
+
+And again, perhaps we'll give it a relative waiting term. Yeah, waiting instead of decay. Okay, another way that we could rewrite this is that our average, our best estimate of the future, A of k is A of k minus 1 plus some learning parameter times what's known as the temporal difference error. Here's what the temporal difference error is. It's your most recent observation minus the old prediction, A of k minus 1.
+
+So think about this, the temporal difference error is simply specifying how off our old prediction, A of k minus 1, was from the new observation. And then we just apply a waiting term that says, well, how much importance do we want to give this new observation? And this is exactly what we do with Q learning. Remember, our agent is going through and with the help of their policy, they are uncovering and observing new data points. They were in state s, they took action a.
+
+They got reward r, and they ended up in new state s prime. That's our data point. So what we're going to do is we are going to use the temporal difference error to make a better estimate. So on the bottom, you can see that our new estimate of Qs of a is our old estimate plus the temporal difference error. And let's break this down a little bit more.
+
+Remember that the temporal difference error is simply the delta between our initial or perhaps most recent estimate and a new observation. So let's think about what this term is saying. Well, inside the brackets, we have r. That's the reward that we just received. That term gamma times max Q of s prime and a prime, that's the discounted value of the best action we could take.
+
+So when you combine the two, it's what is our immediate reward plus the reward that we expect to receive in the future. This in turn becomes our new best guess of what Qs of a should be. So what we're going to do is simply take the difference between our new best guess, our previous observation, and apply some sort of learning factor. Notice that this is a very common theme, the difference between our old projection and our new data point, whether it's forecasting or gradient descent, it comes up quite a bit. Okay, let's get back to it.
+
+So how exactly does Q learning work? Well, we start with an estimate, some randomly initialized value for every given Qs of a. We then observe the reward in the next state once we make an action. From this, we compute a better guess of what we think that specific Qs of a should be. Now again, in this instance, we're not taking every action at one time.
+
+We're taking one action. So the way you can think about this is we are only updating a single Qs of a term in what we'll describe later as a Q-table. We then update our Qs of a, and then we repeat. That's great. Now, it's also important to remember that Q learning is itself an online algorithm.
+
+That is each time we get a new data point from our agent, it triggers an update. But I still haven't explained to you how we actually update Qs of a. I've said, well, to get the new value of Qs of a, you have to have the old value and come up with a better guess. That's not really helpful. This is where we will start talking about Q-tables, which are the missing link between what we've talked about and how to actually update your Q value.
+
+As I said before, think of a given Qs of a as a single value in a lookup table. As an example, I have a toy problem on the right. Let's say we have a very simple world. Our agent can be in two states, A and B, and there are two actions it can take at any given time. It can move left or it can move right.
+
+Now, that Qs of a, as you can see, is one of four values in a Q-table. A Q-table you could think of as a lookup table of every possible action we can take in every possible state. So Qs of a is a single value in that table. And the whole idea here is that we randomly initialize this table. And then we iteratively update each value in the table with a new observation.
+
+So the observation that comes in for say, moving to state B and making choice right will update the corresponding value in the Q-table. And ultimately, with enough data, most of the time this table will eventually converge where you won't see changes in your new policy, for your agent will be able to have a very accurate sense of rewards based on the state and the action they take. Let's go into this in a little bit more detail using the example we talked about. Again, very simple. We have two states, A and B.
+
+It can take two actions. It can move left or it can move right. This gives us a two by two table of possible state action combinations. And that provides us with the Q-table you see. Now these values can be randomly initialized, or maybe we start with some prior knowledge of the world.
+
+And to round out our problem, let's have a discount rate of gamma equals 0.9. That is how important do we think future rewards are? And as we mentioned before, Q learning has a learning rate. How quickly do we want to adjust our specific Q value in the Q-table based on our new information? Let's say the following situation happens.
+
+We decide that we are in state A. We then move right, we get reward r equals 1 and land in new state, s prime equals B. That's our data point. What happens from there? Well, let's go ahead and apply Q learning to see how this updates our Q-table.
+
+Well, let's go term by term. Okay, focusing in first on this max Q s prime and a prime. Remember, we are now in state B. So what we do is we go to our Q-table and we look at all possible actions we could take from here. So in state B, our options are we could move left or right.
+
+Now let's go to our Q-table. And our Q-table says, well, what is the maximum value that we could receive from left or right? So it's essentially saying, now that I'm in state B, I expect my reward will be four. If I go left, and I believe my reward will be 2.5 if I go right, so we find the maximum value, what is the best thing we could do in this state? So that's four.
+
+Now what we do is we apply our discount. That's great, we have our reward now, but we need to discount the reward we get later. So that's 0.9 times 4.0 or 3.6. What this means is that this target term, right, that we talked about before, our new expectation of what we think the long-term reward is, is simply our immediate reward plus that reward across all future states, which is just 4.6. Okay, so that would be our new Q value.
+
+But remember that our old Q value, for being in state A and moving to the right, is 0.8. So now what we have to do is we need to calculate that temporal difference. What is our target value, our prediction, this value up here, and then subtract off the old Q value. So that's 4.6 minus 0.8 or 3.8. Great, so remember though that we also in this equation have a learning rate, and that learning rate is 0.5.
+
+So our new Q value that we actually use is the old value plus our learning rate times the difference between our new Q value and our old. And ultimately, that gives us a value of 2.7. And after this step, what changes in this table is we have now updated the Q value for state equals a, action equals right to 2.7. And the more that we do this, the more our table gets updated until it converges. Now, Q-tables are useful for simple problems, but you can imagine that they can get very big, very fast.
+
+Think of a world with full self-driving autonomous vehicles or autonomous robots. Think of just how many state action pairs we would need to create in order to solve this problem. Well, it turns out for more complex or continuous problems, well, it just gets too large to use a Q-table, so we have to use some other option. And there are three other options that are used broadly in the field of reinforcement learning. We are not gonna go into them any deeper than just commenting on them, but you'll first notice that all three of them leverage neural networks.
+
+Another reason why understanding neural networks is so important, but the first option is deep Q-networks or DQM. In this case instead of a Q-table, why not just use a neural network? It can take as input a state and then output Q values for all possible actions. And then when your policy is trying to predict which state it should go into, it can simply call this neural network. Policy gradient methods.
+
+Why do we need to worry about Q values? Let's just approximate the policy directly. And then lastly, we can sort of combine the two using what are known as actor-critic methods. These are neural networks that approximate both the policy and the value function and attempt to combine them to supercharge your outputs. Again, we are not going to go deeper into these three methods, but just keep them in the back of your mind and use this as a launching off point if you ever encounter a more complex reinforcement learning problem.
+
+Okay, now we've got an updated Q-table, but how does that actually enable us to make better decisions? Well, I'll remind you that what Q-learning for model-free reinforcement learning or dynamic programming for model-based reinforcement learning do is that ultimately they're gonna give the policies better choices, a more accurate reward estimation for a given action from a given state. But it is still the policy itself that controls the agent. So if we think about it, going back to our policies, random, greedy, or epsilon greedy, what has happened is that our Q-table might now have a better approximation for what is the best possible guess, the top reward that we could get in a certain state from a certain action. So you can see is that ultimately it's the policy that's still calling the shots, but having an updated Q-table or having a few rounds of dynamic programming if we're doing model-based, is simply giving our policies better information to act on.
+
+Thank you for watching this presentation.
